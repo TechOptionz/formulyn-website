@@ -1,0 +1,26 @@
+.timeline {
+  display: flex;
+  gap: 4px;
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.segment {
+  /* Proportional width comes from --segment-flex, set per segment. */
+  flex: var(--segment-flex, 1);
+  min-width: 0;
+}
+
+.bar {
+  height: 4px;
+  background: var(--segment-color, var(--c-gold));
+  border-radius: 2px;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin-top: 8px;
+  white-space: nowrap;
+}

@@ -1,0 +1,65 @@
+/*
+ * Word-by-word entrance.
+ *
+ * Each word carries a clip that cuts everything below its own baseline box, so
+ * the word can start below the line and rise into view from behind it. The clip
+ * is a `clip-path` rather than `overflow: hidden` on purpose: overflow would
+ * move the inline-block's baseline and knock the words out of alignment with
+ * the rest of the line, whereas clipping is purely visual.
+ *
+ * The padding under each word gives descenders (g, y, p) room to sit inside the
+ * clip; the matching negative margin keeps that padding from inflating the
+ * line box.
+ */
+
+/*
+ * Nothing is declared on the root: it is the caller's own heading element, and
+ * a `text-wrap` here would override the balanced rag the design asks for.
+ * `text-wrap` inherits, so each line box picks it up from the heading by
+ * itself.
+ */
+
+.line {
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  padding: 0 0.06em 0.24em;
+  margin: 0 -0.06em -0.24em;
+  clip-path: inset(-0.8em -0.4em 0 -0.4em);
+}
+
+.inner {
+  display: inline-block;
+}
+
+/* Only hinted while the entrance is pending or running — the class is dropped
+   once it finishes, and with it the compositing layers. */
+.hidden .inner,
+.shown .inner {
+  will-change: transform;
+}
+
+/* Parked until the observer says the line has been scrolled to. */
+.hidden .inner {
+  opacity: 0;
+}
+
+.shown .inner {
+  animation: word-rise 0.95s var(--ease-out-expo) var(--word-delay, 0ms) both;
+}
+
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 106%, 0) rotate(2.2deg);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,63 @@
+/*
+ * Eyebrow + heading on the left, supporting paragraph on the right.
+ * Per-section measures come in as custom properties so each call site keeps
+ * its exact design values without forking the component.
+ */
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: var(--head-gap, clamp(32px, 4vw, 56px));
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  /*
+   * 600, not 500: Century Gothic — first in the display stack, and installed on
+   * most Windows machines — ships Regular and Bold only, so a 500 renders as
+   * Regular and the heading reads thin. 600 resolves to its Bold, and to Jost
+   * SemiBold everywhere the local font is absent.
+   */
+  font-weight: 600;
+  font-size: var(--heading-size, clamp(34px, 4.2vw, 56px));
+  letter-spacing: -0.015em;
+  margin: 0;
+  max-width: var(--heading-max, none);
+  text-wrap: balance;
+}
+
+.intro {
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: var(--intro-max, 380px);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ---- Tones --------------------------------------------------------- */
+
+.light .eyebrow {
+  color: var(--c-bronze);
+}
+
+.light .intro {
+  color: var(--c-slate);
+}
+
+.dark .eyebrow {
+  color: var(--c-sage-muted);
+}
+
+.dark .intro {
+  color: var(--c-sage-muted);
+}

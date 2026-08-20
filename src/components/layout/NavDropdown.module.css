@@ -1,0 +1,319 @@
+/* Nav disclosure — desktop dropdown and mobile accordion.
+   Both share the row block further down, so a row is styled once.
+
+   No box-sizing reset in this project, so the panel opts in locally. */
+
+/* ---- Desktop trigger ----------------------------------------------- */
+
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Typography is lifted from Header's .link so the item is indistinguishable
+   from its neighbours; the vertical padding matches the CTA's box so the
+   trigger does not change --nav-h. */
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-sage-muted);
+  transition: color 0.25s;
+}
+
+.trigger:hover,
+.triggerOpen {
+  color: var(--c-cream);
+}
+
+/* Bridges the gap between the trigger and the panel so the pointer can
+   travel down without crossing dead space. */
+.triggerOpen::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 26px;
+}
+
+.caret {
+  flex: none;
+  opacity: 0.7;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.triggerOpen .caret,
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+/* ---- Desktop panel -------------------------------------------------- */
+
+.panel {
+  position: absolute;
+  top: calc(100% + 24px);
+  /* Pulled left by the panel's own padding so the row text lines up
+     optically under the trigger label. */
+  left: -20px;
+  z-index: 5;
+  box-sizing: border-box;
+  width: 460px;
+  max-width: calc(100vw - 2 * var(--gutter-nav));
+  padding: 6px;
+  /* The rail sets nowrap for its own layout; descriptions must wrap. */
+  white-space: normal;
+  background:
+    var(--menu-wash),
+    var(--menu-bg);
+  border: 1px solid var(--line-dark-strong);
+  border-radius: 2px;
+  box-shadow: var(--menu-shadow);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.2s var(--ease-out-expo),
+    transform 0.3s var(--ease-out-expo),
+    visibility 0s linear 0.3s;
+}
+
+.panel * {
+  box-sizing: border-box;
+}
+
+.panelOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px 12px;
+  border-bottom: 1px solid var(--line-dark-faint);
+}
+
+.panelEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-sage-dim);
+}
+
+.panelAll {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-sage-muted);
+  transition: color 0.25s;
+}
+
+.panelAll:hover,
+.panelAll:focus-visible {
+  color: var(--c-gold-light);
+}
+
+/* ---- Shared row ----------------------------------------------------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row + .row {
+  border-top: 1px solid var(--line-dark-faint);
+}
+
+.rowLink {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 14px;
+  gap: 14px;
+  align-items: start;
+  padding: 15px 14px;
+  border-radius: 2px;
+  color: var(--c-cream);
+  transition: background 0.3s var(--ease-out-expo);
+}
+
+.rowLink:hover,
+.rowLink:focus-visible {
+  background: var(--wash-cream);
+  color: var(--c-cream);
+}
+
+.rowLink:focus-visible {
+  outline-offset: -2px;
+}
+
+.rowIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--c-sage-muted);
+  border: 1px solid var(--line-dark);
+  border-radius: 2px;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.rowIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.rowLink:hover .rowIcon,
+.rowLink:focus-visible .rowIcon {
+  color: var(--c-gold);
+  border-color: var(--line-gold);
+  background: var(--wash-gold);
+}
+
+.rowBody {
+  min-width: 0;
+}
+
+.rowTitle {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--c-cream);
+  text-wrap: pretty;
+  transition: color 0.25s;
+}
+
+.rowLink[aria-current="page"] .rowTitle {
+  color: var(--c-gold-light);
+}
+
+.rowText {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--c-sage-muted);
+  text-wrap: pretty;
+}
+
+/* Sized so its line box matches the title's, which lines the glyph up with
+   the first line of the row rather than floating at the row's centre. */
+.rowArrow {
+  align-self: start;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--c-sage-dim);
+  opacity: 0.6;
+  transform: translateX(-3px);
+  transition:
+    transform 0.3s var(--ease-out-expo),
+    opacity 0.3s,
+    color 0.3s;
+}
+
+.rowLink:hover .rowArrow,
+.rowLink:focus-visible .rowArrow {
+  color: var(--c-gold);
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Mobile accordion ----------------------------------------------- */
+
+.acc {
+  border-bottom: 1px solid var(--line-dark-drawer);
+}
+
+/* Matches Header's .drawerLink so the row sits in the same rhythm. */
+.accTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-sage);
+  transition: color 0.25s;
+}
+
+.accTrigger:hover {
+  color: var(--c-cream);
+}
+
+.accPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  white-space: normal;
+  transition:
+    grid-template-rows 0.36s var(--ease-out-expo),
+    opacity 0.24s linear;
+}
+
+.accPanelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.accClip {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Mobile equivalent of the panel head's overview link. */
+.accOverview {
+  display: block;
+  padding: 4px 0 16px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-sage-muted);
+}
+
+.accOverview:hover {
+  color: var(--c-gold-light);
+}
+
+/* Full-bleed touch rows: the negative margin lets the hover wash run past
+   the text edge without indenting the copy. */
+.accRowLink {
+  grid-template-columns: 26px minmax(0, 1fr) 14px;
+  gap: 12px;
+  min-height: 44px;
+  padding: 14px 10px;
+  margin: 0 -10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition-delay: 0s;
+  }
+}

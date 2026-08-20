@@ -1,0 +1,154 @@
+.section {
+  background: var(--c-bone);
+  color: var(--c-graphite);
+  padding: var(--section-y) var(--gutter);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line-light);
+  padding-bottom: 28px;
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin: 0 0 16px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(32px, 4.2vw, 56px);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.scoreStars {
+  color: var(--c-gold);
+  letter-spacing: 3px;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.scoreMeta {
+  border-left: 1px solid var(--line-light);
+  padding-left: 20px;
+}
+
+.scoreCount {
+  font-size: 13px;
+  color: var(--c-slate);
+  margin: 0 0 8px;
+}
+
+.scoreLink {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Touch target grown past the 15px text box, without disturbing the score
+   block it sits under — see the same treatment on the services grid. */
+@media (max-width: 860px) {
+  .scoreLink {
+    position: relative;
+    display: inline-block;
+  }
+
+  .scoreLink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+/* ---- Cards --------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(20px, 2.5vw, 28px);
+}
+
+.card {
+  margin: 0;
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.3s;
+}
+
+.card:hover {
+  border-color: var(--c-gold);
+}
+
+.cardStars {
+  color: var(--c-gold);
+  letter-spacing: 3px;
+  font-size: 14px;
+}
+
+/* Unearned stars are dimmed rather than dropped, so a four-star review still
+   occupies the same width as a five-star one and the grid stays even. */
+.starEmpty {
+  opacity: 0.25;
+}
+
+/* The attribution stays slate — it is a credit line, not a call to action —
+   and only picks up the link colour on hover. */
+.attributionLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.attributionLink:hover {
+  color: var(--c-bronze);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.attribution {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--c-slate);
+  border-top: 1px solid var(--line-light-soft);
+  padding-top: 18px;
+}

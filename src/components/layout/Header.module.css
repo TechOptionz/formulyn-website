@@ -1,0 +1,261 @@
+.nav {
+  /* Named so the drawer can subtract the row gap it sits below. */
+  --nav-gap: clamp(12px, 2vw, 24px);
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nav-gap);
+  flex-wrap: wrap;
+  padding: 14px var(--gutter-nav);
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-dark-soft);
+}
+
+/*
+ * Sized so the lettering lands at the optical weight of the text wordmark it
+ * replaces, and so the ring's strapline still reads at a glance. At 42px the
+ * mark is now the tallest thing in the desktop row — taller than the 38px CTA
+ * beside it — so it sets the bar's height: 42px plus the bar's own 14px either
+ * side plus the hairline is the 71px --nav-h carries, and every sticky offset
+ * on the site is keyed to that. Move this and the token moves with it. The
+ * compact bar is unaffected: 42px still sits inside its 44px touch row.
+ */
+.wordmark {
+  flex: none;
+  --logo-h: clamp(34px, 8vw, 42px);
+}
+
+/* ---- Desktop rail (>= 1100px) ------------------------------------- */
+
+.desktop {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(14px, 2.6vw, 32px);
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.link {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--c-sage-muted);
+  text-transform: uppercase;
+}
+
+.link:hover {
+  color: var(--c-cream);
+}
+
+.cta {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-gold);
+  padding: 11px 22px;
+  border-radius: 2px;
+}
+
+.cta:hover {
+  background: var(--c-gold-light);
+  color: var(--c-ink);
+}
+
+/* ---- Mobile rail (< 1100px) --------------------------------------- */
+
+.mobile {
+  flex: 1 1 auto;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/*
+ * Sized to the burger beside it: 44px tall, which is the touch target and no
+ * more. The vertical padding used to sit outside the 44px min-height — this
+ * project has no global border-box reset — so the pill measured 68px and set
+ * the height of the whole compact bar. Height now comes from min-height alone,
+ * and the label is trimmed a step so the pill stays clear of the wordmark on
+ * a 360px screen while reading as the same small-caps CTA.
+ */
+.ctaCompact {
+  box-sizing: border-box;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-gold);
+  padding: 0 14px;
+  border-radius: 2px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.ctaCompact:hover {
+  background: var(--c-gold-light);
+  color: var(--c-ink);
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid var(--line-dark-button);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 1.5px;
+  background: var(--c-cream);
+}
+
+/* ---- Read progress ------------------------------------------------- */
+
+/*
+ * Sits on the bar's own bottom hairline and fills as the document is scrolled.
+ * Driven by a scroll timeline, so it tracks the scrollbar exactly with no
+ * listener and no work on the main thread. Browsers without scroll timelines
+ * are left with the bar at zero width, which is simply the hairline as it is.
+ */
+
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--c-gold), var(--c-gold-light));
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .progressBar {
+      animation: progress-fill linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Drawer -------------------------------------------------------- */
+
+.drawer {
+  /* Clearance between the bar's own row and the drawer's hairline. */
+  --drawer-gap: 12px;
+
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line-dark);
+  margin-top: var(--drawer-gap);
+  padding-top: 6px;
+}
+
+.drawerLink {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--c-sage);
+  text-transform: uppercase;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-dark-drawer);
+}
+
+.drawerLink:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 1099px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  /*
+   * The bar is sticky at the top of the viewport, so anything an open drawer
+   * pushes past the bottom edge can never be reached: the page scrolls behind
+   * the bar rather than through it. With a service accordion expanded the
+   * drawer stands ~1000px tall, which put Contact — and the tail of the
+   * submenu — permanently off-screen on every phone size. Cap the drawer to
+   * the room the bar leaves and let it carry its own scroll.
+   *
+   * The chat launcher is subtracted too: it floats above the bar, so a drawer
+   * running the full height would end with its last row underneath it.
+   */
+  .drawer {
+    /* So the cap below measures the drawer's whole box, padding and hairline
+       included — this project has no global border-box reset. */
+    box-sizing: border-box;
+    max-height: calc(
+      100vh - var(--nav-h) - var(--nav-gap) - var(--drawer-gap) -
+        var(--chat-clearance)
+    );
+    max-height: calc(
+      100dvh - var(--nav-h) - var(--nav-gap) - var(--drawer-gap) -
+        var(--chat-clearance)
+    );
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  /*
+   * The wordmark's own line box is 23px tall, well under a comfortable touch
+   * target. The CTA and burger already set the row at 44px, so centring it on
+   * a 44px box costs no height. Left at its natural size on the desktop rail,
+   * where the row is shorter and this would push the bar taller.
+   */
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+@media (min-width: 1100px) {
+  /* The drawer belongs to the compact rail only. */
+  .drawer {
+    display: none;
+  }
+}

@@ -1,0 +1,23 @@
+/*
+ * Route entrance. Deliberately short and shallow — the hero underneath is
+ * running its own staged entrance, and anything longer here would read as lag
+ * on the click rather than as polish.
+ *
+ * The last keyframe resolves to `transform: none` so the wrapper stops being a
+ * containing block once it lands, leaving sticky and fixed descendants alone.
+ */
+
+.page {
+  animation: page-in 0.55s var(--ease-out-expo) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,47 @@
+/*
+ * The supplied lockup, shipped as two plates so the strapline ring can turn
+ * independently of the lettering:
+ *
+ *   logo-wordmark.webp  1322x422 — "formulyn." over the whole lockup box
+ *   logo-badge.webp      422x422 — the ring, cut square about the circle's
+ *                                  centre, so rotating the element about its
+ *                                  own centre rotates the ring about its axis
+ *
+ * The percentages below are measured off the artwork; they place the ring
+ * square back where it sits in the lockup. Colour is baked into the plates
+ * (cream lettering, the gold full stop the rest of the site closes its
+ * headings with) — both only ever sit on a dark surface.
+ */
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Height is the caller's to set; the box takes its width from the artwork.
+   No padding here — this project has no global border-box reset. */
+.plate {
+  position: relative;
+  display: block;
+  height: var(--logo-h, 36px);
+  aspect-ratio: 1322 / 422;
+}
+
+.word,
+.ring {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: block;
+}
+
+.word {
+  left: 0;
+  width: 100%;
+}
+
+.ring {
+  left: 68.079%;
+  width: 31.921%;
+  transform-origin: 50% 50%;
+}

@@ -1,0 +1,145 @@
+.footer {
+  background: var(--c-ink-deep);
+  border-top: 1px solid var(--line-dark-soft);
+  /*
+   * The trailing padding also has to clear the floating chat launcher. It is
+   * fixed to the bottom corner, and the copyright line is the one piece of the
+   * document that can never be scrolled out from under it — at every width the
+   * launcher was sitting directly on top of it.
+   */
+  padding: clamp(56px, 7vw, 88px) var(--gutter)
+    calc(40px + var(--chat-clearance));
+}
+
+.grid {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(36px, 5vw, 72px);
+}
+
+/* Well above the bar: the column is 260px at its narrowest and the mark is
+   188px wide here, so the room is there — and the ring's strapline only
+   becomes legible rather than merely visible at this size. */
+.wordmark {
+  --logo-h: 60px;
+  margin-bottom: 22px;
+}
+
+.blurb {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--c-sage-muted);
+  max-width: 340px;
+  margin: 0 0 22px;
+  text-wrap: pretty;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line-gold);
+  border-radius: 2px;
+  padding: 8px 14px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  animation: fPulse 2.4s ease-in-out infinite;
+}
+
+.statusLabel {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.columnTitle {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-sage-dim);
+  margin: 0 0 20px;
+}
+
+.columnList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.columnLink {
+  font-size: 14px;
+  color: var(--c-sage);
+}
+
+.columnLink:hover {
+  color: var(--c-gold-light);
+}
+
+.columnText {
+  font-size: 14px;
+  color: var(--c-sage);
+}
+
+.goldLink {
+  font-size: 14px;
+}
+
+/* Sits in the Consultancy column under the discovery-call link, so it takes
+   the same 14px body size and carries the mark in gold to mark it external. */
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--c-sage);
+  transition: color 0.25s;
+}
+
+.social:hover {
+  color: var(--c-gold-light);
+}
+
+.socialMark {
+  color: var(--c-gold);
+  flex-shrink: 0;
+}
+
+.legal {
+  max-width: var(--page-max);
+  margin: 48px auto 0;
+  border-top: 1px solid var(--line-dark-faint);
+  padding-top: 24px;
+  font-size: 12px;
+  color: var(--c-sage-dim);
+}
+
+/*
+ * Touch sizing for the link columns.
+ *
+ * A 14px link occupies a 17px line box, and at a 12px gap the rows sat on a
+ * 29px pitch — too small to hit, and too close together to hit the right one.
+ * Standing each link on a 44px box and taking the spacing back out of the gap
+ * keeps the column's overall rhythm close to the drawn design while making the
+ * rows separately tappable.
+ */
+@media (max-width: 860px) {
+  .columnList {
+    gap: 2px;
+  }
+
+  .columnLink,
+  .goldLink,
+  .social {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

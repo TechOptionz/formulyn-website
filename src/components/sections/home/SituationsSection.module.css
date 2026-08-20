@@ -1,0 +1,94 @@
+.section {
+  background: var(--c-bone);
+  color: var(--c-graphite);
+  padding: clamp(72px, 9vw, 128px) var(--gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(20px, 2.5vw, 32px);
+}
+
+.card {
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  padding: 36px 30px;
+  background: var(--c-bone);
+  /* Column so the "What we do" rule bottom-aligns across uneven quotes. */
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.3s,
+    transform 0.3s;
+}
+
+.card:hover {
+  border-color: var(--c-gold);
+  transform: translateY(-4px);
+}
+
+/* The heading says "three situations", so each card names its own. */
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.index {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  /* Bronze, not gold: gold clears only 2.3:1 on the bone canvas. */
+  color: var(--c-bronze);
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin: 0;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-weight: 500;
+  /* Fluid: quotes range from one line to five, so a fixed 24px blows out. */
+  font-size: clamp(20px, 1.6vw, 24px);
+  margin: 0 0 14px;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.problem {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--c-slate);
+  margin: 0 0 22px;
+  text-wrap: pretty;
+}
+
+.response {
+  margin-top: auto;
+  border-top: 1px solid var(--line-light-soft);
+  padding-top: 18px;
+}
+
+.responseLabel {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin: 0 0 10px;
+}
+
+.responseBody {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--c-graphite);
+  margin: 0;
+  text-wrap: pretty;
+}

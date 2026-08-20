@@ -1,0 +1,8 @@
+import { useEffect, useLayoutEffect } from "react";
+
+/**
+ * `useLayoutEffect` in the browser, `useEffect` on the server.
+ * Lets effects that must run before paint do so without the SSR warning.
+ */
+export const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;

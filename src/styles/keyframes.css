@@ -1,0 +1,98 @@
+/* Shared animations. Referenced by name from component stylesheets. */
+
+@keyframes fPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fHeroIn {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll-linked                                                       */
+/* ------------------------------------------------------------------ */
+
+/*
+ * Driven by scroll position rather than by a clock — see the utilities in
+ * globals.css. Written as from/to pairs because the browser samples them at
+ * whatever progress the scroll has reached.
+ */
+
+/* A section handing over: dims and draws back as it leaves the top. */
+@keyframes fScrollExit {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0.22;
+    transform: translate3d(0, -48px, 0) scale(0.975);
+  }
+}
+
+/* The incoming section settling onto the page as it is scrolled up. */
+@keyframes fScrollSettle {
+  from {
+    transform: translate3d(0, 46px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Decorative layers travelling at their own rate, for depth. */
+@keyframes fScrollDrift {
+  from {
+    transform: translate3d(0, 44px, 0);
+  }
+  to {
+    transform: translate3d(0, -44px, 0);
+  }
+}
+
+/* Photography easing out of a slight push-in across its whole pass. */
+@keyframes fScrollZoom {
+  from {
+    transform: scale(1.14);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The hairline that draws across a section's top edge as it arrives. */
+@keyframes fEdgeSweep {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}

@@ -1,0 +1,317 @@
+/*
+ * Floating chat assistant. Fixed-position overlay only — it must never
+ * affect the layout or height of the page behind it.
+ */
+
+.root {
+  position: fixed;
+  right: clamp(16px, 3vw, 32px);
+  bottom: clamp(16px, 3vw, 32px);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  /* The wrapper must not intercept clicks on the page behind it. */
+  pointer-events: none;
+}
+
+.root > * {
+  pointer-events: auto;
+}
+
+/* ---- Launcher ------------------------------------------------------- */
+
+.launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-gold);
+  border: none;
+  border-radius: 2px;
+  padding: 15px 22px;
+  min-height: 48px;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  transition:
+    background 0.25s,
+    transform 0.25s;
+}
+
+.launcher:hover {
+  background: var(--c-gold-light);
+  transform: translateY(-2px);
+}
+
+.launcherDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-ink);
+  animation: fPulse 2.4s ease-in-out infinite;
+}
+
+/* ---- Panel ---------------------------------------------------------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: min(92vw, 400px);
+  height: min(72vh, 560px);
+  background: var(--c-ink);
+  border: 1px solid var(--line-dark-strong);
+  border-radius: 2px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  animation: fHeroIn 0.35s var(--ease-out-expo) both;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line-dark);
+  background: radial-gradient(
+      420px 200px at 80% 0%,
+      rgba(201, 150, 63, 0.14),
+      transparent 65%
+    ),
+    var(--c-ink);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--c-cream);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-sage-muted);
+  margin: 6px 0 0;
+}
+
+.close {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--c-sage-muted);
+  background: transparent;
+  border: 1px solid var(--line-dark-input);
+  border-radius: 2px;
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+}
+
+.close:hover {
+  color: var(--c-cream);
+  border-color: var(--c-gold);
+}
+
+/* ---- Transcript ----------------------------------------------------- */
+
+.log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(237, 232, 221, 0.2) transparent;
+}
+
+.bubble {
+  max-width: 85%;
+  font-size: 14px;
+  line-height: 1.65;
+  border-radius: 2px;
+  padding: 12px 15px;
+  text-wrap: pretty;
+  white-space: pre-wrap;
+}
+
+.assistant {
+  align-self: flex-start;
+  background: var(--wash-cream);
+  border: 1px solid var(--line-dark);
+  color: var(--c-cream);
+}
+
+.user {
+  align-self: flex-end;
+  background: var(--c-gold);
+  color: var(--c-ink);
+  border: 1px solid var(--c-gold);
+}
+
+.error {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--line-gold);
+  color: var(--c-gold-light);
+}
+
+/* Typing indicator */
+.typing {
+  align-self: flex-start;
+  display: flex;
+  gap: 5px;
+  padding: 14px 15px;
+  border: 1px solid var(--line-dark);
+  background: var(--wash-cream);
+  border-radius: 2px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-sage-muted);
+  animation: fPulse 1.2s ease-in-out infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* ---- Suggestions & actions ------------------------------------------ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--c-gold);
+  background: transparent;
+  border: 1px solid var(--line-gold);
+  border-radius: 2px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+
+.chip:hover {
+  background: var(--c-gold);
+  color: var(--c-ink);
+}
+
+/*
+ * Starter questions on the opening screen. Same chip language, stacked
+ * rather than wrapped: the questions are full sentences, so side-by-side
+ * chips would break into ragged one-word lines on a narrow panel.
+ */
+.starters {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.starter {
+  composes: chip;
+  /* Tap target floor for touch — the chip's padding alone falls short. */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  /* Long questions wrap inside the button instead of widening the panel. */
+  overflow-wrap: anywhere;
+}
+
+/* ---- Composer -------------------------------------------------------- */
+
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-top: 1px solid var(--line-dark);
+  background: var(--c-ink-deep);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--c-cream);
+  background: transparent;
+  border: 1px solid var(--line-dark-input);
+  border-radius: 2px;
+  padding: 12px 14px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--c-gold);
+}
+
+.send {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-gold);
+  border: none;
+  border-radius: 2px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.send:hover:not(:disabled) {
+  background: var(--c-gold-light);
+}
+
+.send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.footnote {
+  padding: 0 14px 12px;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--c-sage-dim);
+  background: var(--c-ink-deep);
+}
+
+@media (max-width: 480px) {
+  .panel {
+    width: calc(100vw - 24px);
+    height: min(80vh, 560px);
+  }
+}

@@ -1,0 +1,193 @@
+@import "./tokens.css";
+@import "./keyframes.css";
+
+/*
+ * NOTE: deliberately no global `box-sizing: border-box` reset.
+ * The approved design was authored against the browser default
+ * (content-box) and several elements — the aspect-ratio thumbnails and the
+ * menu button among them — size differently under border-box. Set
+ * box-sizing per component if you need it.
+ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-ink);
+  color: var(--c-cream);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--c-gold);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--c-gold-light);
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared layout primitives                                            */
+/* ------------------------------------------------------------------ */
+
+/* Centred content column used by every section. */
+.shell {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll-linked motion                                                 */
+/* ------------------------------------------------------------------ */
+
+/*
+ * These utilities are tied to scroll position rather than to a clock: the
+ * browser advances them as the element travels through the viewport, so the
+ * page answers the scroll itself instead of replaying a fixed animation.
+ *
+ * All of it is progressive enhancement. Where view timelines are unsupported —
+ * or the reader has asked for less motion — the rules below never apply and the
+ * elements render in their finished state, which is how they are authored.
+ * Only compositor properties (transform, opacity) are touched, so none of this
+ * costs a layout.
+ */
+
+.edgeSweep {
+  position: relative;
+}
+
+/* Gold hairline across the top edge of a section, drawn as it arrives. */
+.edgeSweep::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  z-index: 2;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line-gold-strong) 16%,
+    var(--c-gold) 50%,
+    var(--line-gold-strong) 84%,
+    transparent
+  );
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /*
+     * Every animated band publishes a timeline named after itself, and the
+     * parts inside it animate against the band's travel through the viewport
+     * rather than against their own.
+     *
+     * That is not a stylistic choice. An anonymous `view()` timeline measures
+     * the subject against its nearest scroll container, and a section that
+     * clips its overflow — the heroes, the closing banner — *is* one, even
+     * though it never scrolls. Anything inside such a section would sit at a
+     * fixed progress forever. Naming the timeline on the band, which is itself
+     * measured against the page, keeps the whole set honest. It also gives the
+     * pieces of a section one shared clock, so they move together.
+     */
+    .edgeSweep,
+    .motionScene {
+      view-timeline: --section block;
+    }
+
+    /* Outgoing section: draws back and dims once it is done being read. */
+    .scrollExit {
+      animation: fScrollExit linear both;
+      animation-timeline: view();
+      animation-range: exit 10% exit 95%;
+    }
+
+    /* Incoming section: content settles the last stretch into place. */
+    .scrollSettle {
+      animation: fScrollSettle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+
+    /* Decorative layer travelling against the scroll, for parallax depth. */
+    .scrollDrift {
+      animation: fScrollDrift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    /* Photography easing out of a push-in over its whole pass. */
+    .scrollZoom {
+      animation: fScrollZoom linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    .edgeSweep .scrollExit,
+    .motionScene .scrollExit,
+    .edgeSweep .scrollSettle,
+    .motionScene .scrollSettle,
+    .edgeSweep .scrollDrift,
+    .motionScene .scrollDrift,
+    .edgeSweep .scrollZoom,
+    .motionScene .scrollZoom {
+      animation-timeline: --section;
+    }
+
+    /*
+     * The hairline runs on the section's timeline for a second reason: a
+     * 1px-tall subject crosses the viewport edge in a single pixel of scroll,
+     * so on its own the sweep would snap rather than draw.
+     */
+    .edgeSweep::before {
+      animation: fEdgeSweep linear both;
+      animation-timeline: --section;
+      animation-range: entry 0% entry 22%;
+    }
+  }
+}
+
+/* Screen-reader-only text. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

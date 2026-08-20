@@ -1,0 +1,139 @@
+.rail {
+  position: sticky;
+  top: calc(var(--nav-h) + 28px);
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin: 0;
+}
+
+/* ---- Step counter -------------------------------------------------- */
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-family: var(--font-display);
+  margin: 12px 0 26px;
+}
+
+.counterNow {
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--c-graphite);
+  animation: count-in 0.5s var(--ease-out-expo) both;
+}
+
+@keyframes count-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.counterTotal {
+  font-size: 15px;
+  color: var(--c-bronze);
+}
+
+/* ---- Step list ----------------------------------------------------- */
+
+.list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--line-light);
+}
+
+/* Hairline that fills as the reader advances through the steps. */
+.progress {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: var(--progress, 0%);
+  background: linear-gradient(
+    to bottom,
+    var(--c-gold),
+    var(--c-gold-pale)
+  );
+  transition: height 0.7s var(--ease-out-expo);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 12px 13px 18px;
+  transition: background 0.4s;
+}
+
+.item:hover {
+  background: var(--c-bone-shade);
+}
+
+.badge {
+  box-sizing: border-box;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-light);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--c-slate);
+  transition:
+    background 0.5s var(--ease-out-expo),
+    border-color 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo);
+}
+
+.name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--c-graphite);
+  transition: color 0.4s;
+}
+
+.weeks {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin-top: 4px;
+  transition: color 0.4s;
+}
+
+/* ---- Current step -------------------------------------------------- */
+
+.item[aria-current] {
+  background: var(--c-bone-shade);
+}
+
+.item[aria-current] .badge {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-ink);
+  box-shadow: 0 0 0 3px var(--line-gold);
+}
+
+.item[aria-current] .name,
+.item[aria-current] .weeks {
+  color: var(--c-gold);
+}

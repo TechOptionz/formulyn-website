@@ -1,0 +1,176 @@
+/* Light band between the four commitments and the dark CTA banner.
+   No box-sizing reset in this project — keep padding off sized elements. */
+
+.section {
+  background: var(--c-bone-shade);
+  color: var(--c-graphite);
+  padding: var(--section-y-sm) var(--gutter);
+}
+
+.grid {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.portraitFrame {
+  width: clamp(200px, 26vw, 320px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--line-gold);
+  overflow: hidden;
+  position: relative;
+  background: var(--c-bone);
+
+  /* If the portrait is missing or still loading, the alt text sits centred
+     inside the ring instead of spilling out of it. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--c-slate);
+}
+
+/* Pinned to the frame so the flex centring above (which only exists to place
+   the alt text when the portrait is missing) can never shrink it. */
+.portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--c-graphite);
+  border-bottom: 1px solid var(--line-gold-strong);
+  padding-bottom: 4px;
+  text-align: center;
+  transition: color 0.25s;
+}
+
+.linkedin:hover {
+  color: var(--c-bronze);
+}
+
+/* Touch target grown past the 21px text box. Absolutely positioned, so it is
+   not laid out as a flex item of the link and the mark/label gap is untouched. */
+@media (max-width: 860px) {
+  .linkedin {
+    position: relative;
+  }
+
+  .linkedin::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+.linkedinMark {
+  color: var(--c-bronze);
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  margin: 0 0 12px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+.role {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--c-slate);
+  margin: 0 0 24px;
+}
+
+.bio {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--c-graphite-soft);
+  margin: 0 0 24px;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.credentials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-light-soft);
+}
+
+.credential {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--c-slate);
+  padding: 11px 0 11px 20px;
+  border-bottom: 1px solid var(--line-light-soft);
+  position: relative;
+}
+
+/* Gold tick-mark rule, in place of a bullet glyph. */
+.credential::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 19px;
+  width: 9px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(18px, 1.9vw, 23px);
+  line-height: 1.55;
+  color: var(--c-graphite);
+  border-left: 1px solid var(--line-gold-strong);
+  margin: 28px 0 0;
+  padding-left: 22px;
+  max-width: 52ch;
+  text-wrap: pretty;
+}

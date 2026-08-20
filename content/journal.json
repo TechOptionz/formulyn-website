@@ -1,0 +1,68 @@
+[
+  {
+    "//": [
+      "HOW TO ADD A JOURNAL POST",
+      "",
+      "Copy the entry below, paste the copy directly under this block, and edit it.",
+      "Newest post first — the page renders these in file order.",
+      "",
+      "  id           unique slug, lower-case-with-dashes. An entry without one is ignored.",
+      "  image        \"/journal/my-post.jpg\" for a file in public/journal/, or a full",
+      "               https:// URL. Use null and the card shows the IMAGE PLACEHOLDER box.",
+      "  imageAlt     one short sentence describing the picture, for screen readers.",
+      "  category     short label above the title. Rendered uppercase.",
+      "  title        a short headline for the post — not the post's first line.",
+      "  excerpt      1-2 sentence summary of the LinkedIn post.",
+      "  date         e.g. \"July 2026\".",
+      "  readTime     e.g. \"3 min read\". Use null to leave it off the meta line.",
+      "  redirectLink the LinkedIn permalink the button opens. Use null and the card",
+      "               shows no button.",
+      "",
+      "This block carries no id, so the site skips it. Leave it at the top."
+    ]
+  },
+  {
+    "id": "placebo-and-under-dosed-formulas",
+    "image": "/journal/placebo-and-under-dosed-formulas-nomark.webp",
+    "imageAlt": "Two identical white capsules side by side. The card beneath the left one reads \"clinically dosed, bioavailable, evidence-backed\" with a tick; the card beneath the right reads \"real ingredient, wrong dose, wrong form\" with a cross.",
+    "category": "EVIDENCE",
+    "title": "The placebo problem: what an under-dosed formula cannot outperform",
+    "excerpt": "A new study found real improvements in memory, physical performance and stress from placebo pills — even when people knew the pills were fake. Most supplements are dosed too low to clear that baseline.",
+    "date": "July 2026",
+    "readTime": "2 min read",
+    "redirectLink": "https://www.linkedin.com/posts/formulyn_supplementformulation-placeboeffect-nutraceuticals-activity-7482635219565502464-qRTX"
+  },
+  {
+    "id": "formulator-before-manufacturer",
+    "image": "/journal/formulator-before-manufacturer.png",
+    "imageAlt": "Typographic card reading \"Clinically proven. The two most abused words in the supplement industry.\"",
+    "category": "PRODUCT DEVELOPMENT",
+    "title": "Call the formulator before you call the manufacturer",
+    "excerpt": "A manufacturer will quote and build exactly what you hand them — including a formula whose hero ingredient isn't TGA-permitted, or whose dose doesn't match the evidence you plan to cite. Formulating first is what makes everything downstream straightforward.",
+    "date": "July 2026",
+    "readTime": "3 min read",
+    "redirectLink": "https://www.linkedin.com/posts/formulyn_formulyn-evidence-led-product-formulation-activity-7482262113948758016-Lx9v"
+  },
+  {
+    "id": "what-clinically-proven-proves",
+    "image": "/journal/what-clinically-proven-proves.webp",
+    "imageAlt": "Carousel cover reading \"The truth behind clinically proven on supplement labels\", with a cracked flask and a mortar both labelled \"clinically proven\", a 50mg ingredient tag struck through, and questions asking about dose matching, which studies, what population and real results.",
+    "category": "EVIDENCE",
+    "title": "What \"clinically proven\" actually proves",
+    "excerpt": "An ingredient can be studied at 600mg and included in a product at 50mg — the claim still stands, the efficacy almost certainly doesn't. Under the TGA's listed medicine framework, permitted indications must be substantiated, but nothing forces the dose on the label to match the dose in the literature.",
+    "date": "June 2026",
+    "readTime": "2 min read",
+    "redirectLink": "https://www.linkedin.com/posts/formulyn_11-activity-7461981186395885569-xLEM"
+  },
+  {
+    "id": "bioavailability-is-not-digestion",
+    "image": "/journal/bioavailability-is-not-digestion.webp",
+    "imageAlt": "A marble bench laid with two bowls of white powder labelled magnesium oxide and magnesium glycinate, a bowl of turmeric beside fresh root, two capsules and a black Formulyn dropper bottle. An open notebook headed \"bioavailability ≠ digestion\" sets methylcobalamin against cyanocobalamin and closes with \"not all forms are created equal\".",
+    "category": "FORMULATION SCIENCE",
+    "title": "Bioavailability is not digestion",
+    "excerpt": "Magnesium oxide absorbs at rates as low as 4%; B12 as cyanocobalamin needs a conversion some people cannot efficiently make. Same mineral, same vitamin on the label — the form, the delivery system and the excipient matrix decide whether any of it reaches the bloodstream.",
+    "date": "May 2026",
+    "readTime": "4 min read",
+    "redirectLink": "https://www.linkedin.com/posts/formulyn_supplementformulation-bioavailability-nutraceuticals-activity-7454749066560790528-Z0PS"
+  }
+]

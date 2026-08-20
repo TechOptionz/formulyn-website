@@ -1,0 +1,139 @@
+.section {
+  background: var(--c-bone);
+  color: var(--c-graphite);
+  padding: var(--section-y-sm) var(--gutter);
+}
+
+/* ---- Featured article ---------------------------------------------- */
+
+.featured {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  padding: clamp(28px, 4vw, 52px);
+  margin-bottom: clamp(32px, 4vw, 52px);
+  transition: border-color 0.3s;
+}
+
+.featured:hover {
+  border-color: var(--c-gold);
+}
+
+.featuredEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin: 0 0 18px;
+}
+
+.featuredTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.15;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.featuredExcerpt {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--c-slate);
+  margin: 0 0 24px;
+  text-wrap: pretty;
+}
+
+.featuredMeta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--c-bronze);
+}
+
+.featuredThumb {
+  background: var(--c-bone-shade);
+  border: 1px solid var(--line-light-soft);
+  border-radius: 2px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  text-align: center;
+  padding: 20px;
+}
+
+/* ---- Post grid ------------------------------------------------------ */
+
+/*
+ * The card itself lives in JournalCard.module.css.
+ *
+ * Stepped columns rather than the auto-fit track this grid used to carry:
+ * auto-fit collapses its empty tracks, so a single note stretched the full
+ * width of the shell. The steps below land on the same column counts auto-fit
+ * gave a full row — one up to 640px, two to 980px, three above it.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---- Source link ---------------------------------------------------- */
+
+.sourceLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sourceLink:hover {
+  color: var(--c-gold);
+}
+
+/* ---- Empty state ---------------------------------------------------- */
+
+.empty {
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  padding: clamp(40px, 6vw, 72px) clamp(28px, 4vw, 52px);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+
+.emptyBody {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--c-slate);
+  max-width: 46ch;
+  margin: 0 auto;
+  text-wrap: pretty;
+}

@@ -1,0 +1,82 @@
+.panel {
+  margin-top: clamp(40px, 5vw, 64px);
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  padding: clamp(28px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 28px;
+  align-items: center;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 26px;
+  margin: 0 0 10px;
+}
+
+.body {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--c-slate);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  min-width: 180px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--c-graphite);
+  background: transparent;
+  border: 1px solid var(--line-light-input);
+  border-radius: 2px;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.submit {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-gold);
+  border: none;
+  border-radius: 2px;
+  padding: 14px 26px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.formStatus {
+  flex-basis: 100%;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--c-slate);
+  margin: 0;
+}
+
+/* Keep the row's 10px rhythm intact while the status line is empty. */
+.formStatus:empty {
+  display: none;
+}
+
+.submit:disabled,
+.input:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.submit:hover {
+  background: var(--c-gold-light);
+}

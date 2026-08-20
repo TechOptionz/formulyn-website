@@ -1,0 +1,312 @@
+.section {
+  background: var(--c-bone);
+  color: var(--c-graphite);
+  padding: var(--section-y-sm) var(--gutter);
+}
+
+.stack {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vw, 36px);
+}
+
+/*
+ * Photo flank / copy flank. The photo column is held to a third so the copy
+ * keeps a readable measure at every width; `.flipped` swaps the two by grid
+ * placement rather than by reordering the markup, so the reading order stays
+ * heading-after-image for a screen reader either way.
+ *
+ * (No global border-box reset in this project — set per component.)
+ */
+.row {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+  min-height: clamp(300px, 30vw, 420px);
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    transform 0.3s var(--ease-out-expo);
+}
+
+.row:hover {
+  border-color: var(--line-gold-strong);
+  transform: translateY(-3px);
+}
+
+.flipped {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.5fr);
+}
+
+.figure {
+  position: relative;
+  grid-row: 1;
+  grid-column: 1;
+  margin: 0;
+  overflow: hidden;
+  background: var(--c-bone-shade);
+  border-right: 1px solid var(--line-light);
+  display: grid;
+  place-items: center;
+}
+
+.flipped .figure {
+  grid-column: 2;
+  border-right: 0;
+  border-left: 1px solid var(--line-light);
+}
+
+.photo {
+  object-fit: cover;
+  filter: saturate(0.94);
+  transition:
+    transform 0.7s var(--ease-out-expo),
+    filter 0.4s;
+}
+
+.row:hover .photo {
+  transform: scale(1.04);
+  filter: saturate(1);
+}
+
+/* Keeps the numeral legible over whatever the photography happens to be. */
+.photoVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-ink) 18%, transparent),
+    color-mix(in srgb, var(--c-ink) 42%, transparent)
+  );
+  pointer-events: none;
+}
+
+.index {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(52px, 6.5vw, 92px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-bronze);
+  opacity: 0.55;
+}
+
+.indexOnPhoto {
+  color: var(--c-cream);
+  opacity: 1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- Placeholder frame ---------------------------------------------- */
+
+/* Sized off the figure so the card keeps its footprint before the photo
+   exists. Drop the file in public/industries/ and set `image.src`. */
+.placeholder {
+  box-sizing: border-box;
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed var(--line-light);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 16px;
+}
+
+.placeholderLabel {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+}
+
+.placeholderPath {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--c-slate);
+  opacity: 0.75;
+  word-break: break-all;
+}
+
+/* ---- Copy flank ------------------------------------------------------ */
+
+.content {
+  grid-row: 1;
+  grid-column: 2;
+  box-sizing: border-box;
+  padding: clamp(28px, 3.4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.flipped .content {
+  grid-column: 1;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.6vw, 50px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.body {
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.8;
+  color: var(--c-graphite-soft);
+  margin: 0;
+  max-width: 56ch;
+  text-wrap: pretty;
+}
+
+.tags {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Same pill as the home intro — gold hairline, bronze caps. */
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-bronze);
+  border: 1px solid var(--line-gold);
+  border-radius: 2px;
+  padding: 7px 12px;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+
+.tag:hover {
+  border-color: var(--c-gold);
+  background: var(--wash-gold);
+}
+
+/* ---- Inverted closing card ------------------------------------------ */
+
+.ctaRow {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+  padding: clamp(32px, 4vw, 56px);
+  background: var(--c-ink-solid);
+  color: var(--c-cream);
+  border-radius: 2px;
+}
+
+.ctaIndex {
+  font-family: var(--font-display);
+  color: var(--c-gold);
+  font-size: 13px;
+  margin: 0 0 14px;
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.ctaSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.ctaBody {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--c-sage-muted);
+  margin: 0;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.ctaLink {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line-gold);
+  padding-bottom: 4px;
+}
+
+.ctaLink:hover {
+  border-bottom-color: var(--c-gold-light);
+}
+
+/* Touch target grown past the 20px text box without moving the gold rule that
+   sits under the lettering — see the same treatment on the services grid. */
+@media (max-width: 860px) {
+  .ctaLink {
+    position: relative;
+  }
+
+  .ctaLink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+/* ---- Stacked ---------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .row,
+  .flipped,
+  .ctaRow {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  /* Photo always leads on the narrow layout — the alternation only reads as
+     rhythm when the two flanks sit side by side. */
+  .figure,
+  .flipped .figure {
+    grid-row: 1;
+    grid-column: 1;
+    aspect-ratio: 16 / 10;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .content,
+  .flipped .content {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .row:hover {
+    transform: none;
+  }
+}

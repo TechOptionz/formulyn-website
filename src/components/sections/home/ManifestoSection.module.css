@@ -1,0 +1,32 @@
+.section {
+  background: var(--c-ink);
+  padding: 0 var(--gutter) clamp(72px, 9vw, 120px);
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-sage-muted);
+  margin: 0 0 28px;
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.highlight {
+  color: var(--c-gold);
+}

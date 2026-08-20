@@ -1,0 +1,99 @@
+/* Hairline grid, matching the industries page:
+   the container draws top + left, each cell right + bottom. */
+
+.section {
+  background: var(--c-bone);
+  color: var(--c-graphite);
+  padding: var(--section-y-sm) var(--gutter);
+}
+
+.grid {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  border-top: 1px solid var(--line-light);
+  border-left: 1px solid var(--line-light);
+}
+
+.cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  transition: background 0.3s;
+}
+
+.cell:hover {
+  background: var(--c-bone-shade);
+}
+
+.index {
+  font-family: var(--font-display);
+  color: var(--c-gold);
+  font-size: 13px;
+  margin: 0 0 32px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  text-wrap: pretty;
+}
+
+.tagline {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--c-bronze);
+  margin: 0 0 14px;
+  text-wrap: pretty;
+}
+
+.body {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--c-slate);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--c-graphite);
+  border-bottom: 1px solid var(--line-gold-strong);
+  padding-bottom: 3px;
+  transition: color 0.25s;
+}
+
+.link:hover {
+  color: var(--c-bronze);
+}
+
+/*
+ * Touch target. The link's own box is 19px tall because the rule under it is
+ * part of the lettering — giving the element a min-height would strand that
+ * underline 25px below the text. Grow the hit area with a pseudo-element
+ * instead, which is out of flow and so changes nothing that is drawn.
+ */
+@media (max-width: 860px) {
+  .link {
+    position: relative;
+  }
+
+  .link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,91 @@
+/*
+ * Scroll-reveal states.
+ *
+ * `hidden` parks the element out of sight; `shown` runs the entrance as a
+ * keyframe animation rather than a transition, so it plays even when the
+ * element is revealed in the same frame it was hidden (which is what happens
+ * to anything already on screen at load). `shown` is stripped once the
+ * animation finishes so the element's own transitions — card hovers, etc. —
+ * are handed back untouched.
+ */
+
+.hidden {
+  opacity: 0;
+}
+
+.shown {
+  animation: reveal-up 0.9s var(--ease-out-expo) var(--reveal-delay, 0ms) both;
+  will-change: transform, opacity;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Left-entering variant: slides in from the side with a de-blur and a settle
+ * from just under full scale. Opt in with `from="left"`.
+ */
+.fromLeft.shown {
+  animation-name: reveal-left;
+  animation-duration: 0.85s;
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translate3d(-64px, 0, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+/* Mirror of the above, for the second column of a two-up layout. */
+.fromRight.shown {
+  animation-name: reveal-right;
+  animation-duration: 0.85s;
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translate3d(64px, 0, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+/*
+ * Cards and tiles: rises a shorter distance out of a slight scale-down, which
+ * reads as the panel settling onto the page rather than sliding up it.
+ */
+.fromScale.shown {
+  animation-name: reveal-scale;
+  animation-duration: 0.95s;
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
