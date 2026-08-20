@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getChatProvider } from "@/lib/chat/provider";
-import { parseMessages } from "@/lib/chat/validate";
+import { parseChatContext, parseMessages } from "@/lib/chat/validate";
 
 /** Answers a conversation turn. Provider is chosen in lib/chat/provider.ts. */
 export async function POST(request: Request) {
@@ -19,8 +19,11 @@ export async function POST(request: Request) {
     );
   }
 
+  // Optional; only stateful providers (Aleesa) read it.
+  const context = parseChatContext(body);
+
   try {
-    const reply = await getChatProvider().reply(messages);
+    const reply = await getChatProvider().reply(messages, context);
     return NextResponse.json(reply);
   } catch (error) {
     // Never surface provider internals to the browser.

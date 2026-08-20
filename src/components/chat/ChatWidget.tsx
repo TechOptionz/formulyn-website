@@ -17,6 +17,28 @@ type Entry = ChatMessage & { error?: boolean };
 
 const initialEntries: Entry[] = [{ role: "assistant", content: greeting }];
 
+const SESSION_KEY = "formulyn_chat_session_id";
+
+/**
+ * A stable id for this visitor's conversation, reused across page loads.
+ *
+ * The Aleesa provider keys the transcript and the inbox thread on it, so a
+ * fresh id every turn would leave the bot with no memory and scatter one
+ * conversation across many threads. Providers that hold no state ignore it.
+ */
+function getSessionId(): string {
+  try {
+    const existing = window.localStorage.getItem(SESSION_KEY);
+    if (existing) return existing;
+    const created = `chat_${crypto.randomUUID()}`;
+    window.localStorage.setItem(SESSION_KEY, created);
+    return created;
+  } catch {
+    // Private mode / storage disabled: still usable, just not across reloads.
+    return `chat_${crypto.randomUUID()}`;
+  }
+}
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [entries, setEntries] = useState<Entry[]>(initialEntries);
@@ -29,6 +51,9 @@ export function ChatWidget() {
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  // Minted lazily on the first send: localStorage is browser-only, and doing
+  // it in an effect would set state during render for no benefit.
+  const sessionIdRef = useRef("");
 
   const say = useCallback((content: string, error = false) => {
     setEntries((prev) => [...prev, { role: "assistant", content, error }]);
@@ -74,6 +99,12 @@ export function ChatWidget() {
             messages: history
               .filter((entry) => !entry.error)
               .map(({ role, content }) => ({ role, content })),
+            sessionId: (sessionIdRef.current ||= getSessionId()),
+            // Sent once the lead flow has collected them, so the CRM contact
+            // behind the conversation stops being anonymous mid-chat.
+            customerName: lead.name || undefined,
+            customerEmail: lead.email || undefined,
+            page: window.location.pathname,
           }),
         });
         if (!response.ok) throw new Error(String(response.status));
@@ -88,7 +119,7 @@ export function ChatWidget() {
         setBusy(false);
       }
     },
-    [entries, say],
+    [entries, lead.email, lead.name, say],
   );
 
   /** Submit a completed lead. */
