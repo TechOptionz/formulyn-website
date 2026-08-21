@@ -1,18 +1,25 @@
+import { aleesaProvider } from "./aleesa-provider";
 import { demoProvider } from "./demo-provider";
 import { liveProvider } from "./live-provider";
 import type { ChatProvider } from "./types";
 
 /**
- * THE SWAP POINT.
+ * THE SWAP POINT. First match wins:
  *
- * Set CHAT_API_URL in the environment and the live provider takes over;
- * leave it unset and the demo knowledge base answers. Nothing else in the
- * app needs to change — the UI and the API route only know about the
- * ChatProvider interface.
+ *   1. Aleesa Web Chat — ALEESA_WEBHOOK_URL + ALEESA_WEBCHAT_API_KEY.
+ *      The bot is trained in the Aleesa dashboard (Knowledge Base + Chat
+ *      Agent) and every conversation lands in the Aleesa inbox.
+ *   2. Generic live API — CHAT_API_URL. Trained by src/data/chat-prompt.ts.
+ *   3. Demo knowledge base — src/data/chat.ts. No configuration needed.
  *
- * See live-provider.ts for the request/response shape to implement, and
- * .env.example for the variables.
+ * Nothing else in the app changes with the choice: the UI and the API route
+ * only know about the ChatProvider interface.
+ *
+ * See .env.example for the variables.
  */
 export function getChatProvider(): ChatProvider {
+  if (process.env.ALEESA_WEBHOOK_URL && process.env.ALEESA_WEBCHAT_API_KEY) {
+    return aleesaProvider;
+  }
   return process.env.CHAT_API_URL ? liveProvider : demoProvider;
 }
