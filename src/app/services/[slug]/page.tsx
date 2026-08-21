@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ServiceDetail } from "@/data/services";
 import { getServiceDetail, serviceDetails } from "@/data/services";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbLd, serviceLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
 import { ServiceDetailSections } from "@/components/sections/services/ServiceDetailSections";
 import { CtaBanner } from "@/components/layout/CtaBanner";
@@ -20,11 +23,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const detail = getServiceDetail(slug);
   if (!detail) return {};
 
-  return {
+  return pageMetadata({
+    path: `/services/${detail.slug}`,
     title: detail.metaTitle,
     description: detail.metaDescription,
-    alternates: { canonical: `/services/${detail.slug}` },
-  };
+  });
 }
 
 /**
@@ -50,9 +53,13 @@ export default async function ServiceDetailPage({ params }: Params) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd(detail)) }}
+      <JsonLd node={faqLd(detail)} />
+      <JsonLd node={serviceLd(detail)} />
+      <JsonLd
+        node={breadcrumbLd([
+          { name: "Services", path: "/services" },
+          { name: detail.heading, path: `/services/${detail.slug}` },
+        ])}
       />
       <PageHero
         eyebrow={detail.eyebrow}

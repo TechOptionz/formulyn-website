@@ -6,6 +6,8 @@ import { ChatWidget } from "@/components/chat/ChatWidget";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { RouteRestartProvider } from "@/components/ui/RouteRestart";
 import { site } from "@/data/site";
+import { siteLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "@/styles/globals.css";
 
 const jost = Jost({
@@ -22,6 +24,17 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Site-wide defaults only.
+ *
+ * Deliberately carries no `alternates` and no per-page Open Graph values:
+ * metadata is inherited by every route, so anything page-specific set here
+ * silently becomes wrong everywhere it is not overridden. Each page builds
+ * its own canonical and OG card through `pageMetadata` in lib/seo.ts.
+ *
+ * `twitter.site` is also gone — it declared @formulyn while no X account is
+ * linked anywhere on the site, which reads as a dead handle.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -32,18 +45,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
     locale: "en_AU",
-    url: site.url,
   },
   twitter: {
     card: "summary_large_image",
-    site: "@formulyn",
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
   },
-  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -52,6 +58,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jost.variable} ${inter.variable}`}>
       <body>
+        {/* The organisation, the founder and the site as one entity graph.
+            Site-wide because it describes the business, not the page. */}
+        <JsonLd node={siteLd} />
         {/* Spans the chrome as well as the page: the header and the footer are
             where a link back to the current route is most often clicked. */}
         <RouteRestartProvider>
