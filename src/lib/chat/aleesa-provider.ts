@@ -40,10 +40,21 @@ function latestUserMessage(messages: ChatMessage[]): string | null {
   return null;
 }
 
+const PATH = "/webhooks/web-chat";
+
 function endpoint(): string {
-  const base = (process.env.ALEESA_WEBHOOK_URL ?? "").replace(/\/+$/, "");
-  if (!base) throw new Error("ALEESA_WEBHOOK_URL is not set");
-  return `${base}/webhooks/web-chat`;
+  const configured = (process.env.ALEESA_WEBHOOK_URL ?? "").replace(/\/+$/, "");
+  if (!configured) throw new Error("ALEESA_WEBHOOK_URL is not set");
+
+  // The Aleesa setup guide prints the *full* endpoint, so the variable is
+  // easily pasted with the path already on it. Appending blindly would then
+  // POST to /webhooks/web-chat/webhooks/web-chat and 404 — from Vercel, with
+  // nothing but a 502 in the browser to debug it by.
+  const base = configured.endsWith(PATH)
+    ? configured.slice(0, -PATH.length)
+    : configured;
+
+  return `${base}${PATH}`;
 }
 
 export const aleesaProvider: ChatProvider = {
