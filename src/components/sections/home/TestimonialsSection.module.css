@@ -71,7 +71,7 @@
 
 /* Touch target grown past the 15px text box, without disturbing the score
    block it sits under — see the same treatment on the services grid. */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .scoreLink {
     position: relative;
     display: inline-block;

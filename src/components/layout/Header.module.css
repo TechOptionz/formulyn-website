@@ -24,13 +24,21 @@
  * side plus the hairline is the 71px --nav-h carries, and every sticky offset
  * on the site is keyed to that. Move this and the token moves with it. The
  * compact bar is unaffected: 42px still sits inside its 44px touch row.
+ *
+ * `display: flex` is load-bearing rather than cosmetic: the mark inside is an
+ * inline-flex box, so left as a block the link laid it out on a line box and
+ * the strut added ~4px of descender space under it. The bar measured 75px
+ * against a token that says 71px, which every sticky offset and scroll-margin
+ * on the site is keyed to. Flex has no line box, so drawn and declared agree.
  */
 .wordmark {
   flex: none;
+  display: flex;
+  align-items: center;
   --logo-h: clamp(34px, 8vw, 42px);
 }
 
-/* ---- Desktop rail (>= 1100px) ------------------------------------- */
+/* ---- Desktop rail (>= 1140px) ------------------------------------- */
 
 .desktop {
   flex: 1 1 auto;
@@ -53,6 +61,31 @@
   color: var(--c-cream);
 }
 
+/*
+ * Touch target for the rail itself. Below 1140px this never applies — the
+ * drawer is showing, and its rows are already 44px — but a large tablet in
+ * landscape is wider than that and gets the full rail, where a 13px link
+ * stands in a 16px box. Grown with a pseudo-element rather than a min-height:
+ * the bar's height is a token every sticky offset on the site is keyed to, and
+ * an out-of-flow box leaves it alone. The rail's own gap is wider than any of
+ * these areas, so no two of them meet.
+ */
+@media (pointer: coarse) {
+  .link {
+    position: relative;
+  }
+
+  .link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
 .cta {
   font-family: var(--font-display);
   font-size: 13px;
@@ -70,10 +103,43 @@
   color: var(--c-ink);
 }
 
-/* ---- Mobile rail (< 1100px) --------------------------------------- */
+/* Same treatment as the rail links above: the pill is drawn at 38px, which is
+   what sets the bar's height on the desktop rail, so the extra six pixels of
+   target go on a pseudo-element instead of into the box. */
+@media (pointer: coarse) {
+  .cta {
+    position: relative;
+  }
 
+  .cta::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+/* ---- Mobile rail (< 1140px) --------------------------------------- */
+
+/*
+ * `flex-basis: 0` with `min-width: 0`, not `auto`.
+ *
+ * The bar wraps (the drawer below is a full-width line of its own), and a flex
+ * container breaks lines on the items' *hypothetical* sizes — before any
+ * shrinking. On `auto` this rail's hypothetical size is the CTA and the burger
+ * at full width, which at 320px left one pixel of slack with the shipped font
+ * and none at all with the metric fallback that renders while it loads: the
+ * rail dropped onto a second row and the bar stood 129px tall against a
+ * --nav-h of 73px. Basing it on zero takes the rail out of that calculation
+ * entirely, so the first row can never break; it still grows to fill the width
+ * and right-aligns exactly as before.
+ */
 .mobile {
-  flex: 1 1 auto;
+  flex: 1 1 0;
+  min-width: 0;
   display: none;
   align-items: center;
   justify-content: flex-end;
@@ -103,7 +169,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
+  /*
+   * Wraps rather than holding one line at all costs. It only ever gets to:
+   * below about 310px, or while a wider fallback font is standing in for the
+   * display face, the pill runs out of room, and two 11px lines still sit
+   * inside the 44px touch row where a second bar row would not.
+   */
+  text-align: center;
+  line-height: 1.2;
 }
 
 .ctaCompact:hover {
@@ -112,6 +185,8 @@
 }
 
 .burger {
+  /* Never shrinks: 44px is the touch target, not a starting size. */
+  flex: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,7 +279,7 @@
   border-bottom: none;
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 1139px) {
   .desktop {
     display: none;
   }
@@ -241,19 +316,17 @@
   }
 
   /*
-   * The wordmark's own line box is 23px tall, well under a comfortable touch
-   * target. The CTA and burger already set the row at 44px, so centring it on
-   * a 44px box costs no height. Left at its natural size on the desktop rail,
-   * where the row is shorter and this would push the bar taller.
+   * The mark is 34px on a phone, well under a comfortable touch target. The
+   * CTA and burger already set the row at 44px, so standing the link on a 44px
+   * box costs no height. Left at its natural size on the desktop rail, where
+   * the row is shorter and this would push the bar taller.
    */
   .wordmark {
-    display: inline-flex;
-    align-items: center;
     min-height: 44px;
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1140px) {
   /* The drawer belongs to the compact rail only. */
   .drawer {
     display: none;

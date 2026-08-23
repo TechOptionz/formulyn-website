@@ -192,6 +192,20 @@
     background 0.25s;
 }
 
+/*
+ * iOS Safari zooms the whole page in when a form control below 16px takes
+ * focus, and leaves it zoomed and panned when focus moves on — which on a
+ * seven-field form means fighting the page back into place after every tap.
+ * 14px is the drawn size and stays that wherever a pointer is doing the
+ * typing; only touch gets the floor raised. `.selectTrigger` comes along
+ * through `composes`; the options it opens are matched to it further down.
+ */
+@media (pointer: coarse) {
+  .field {
+    font-size: 16px;
+  }
+}
+
 .field:hover:not(:disabled) {
   border-color: var(--line-dark-nav);
 }
@@ -317,6 +331,15 @@
 
 .selectOptionSelected {
   color: var(--c-gold-light);
+}
+
+/* Matched to the trigger, which touch raises to 16px so iOS does not zoom the
+   page in on it — an option set two steps smaller than the field it fills
+   reads as a different control. */
+@media (pointer: coarse) {
+  .selectOption {
+    font-size: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -499,7 +522,7 @@ a.channelValue {
  * the label above it and the card padding below are not interactive, so there
  * is nothing for the larger area to steal.
  */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   a.channelValue {
     position: relative;
   }

@@ -82,7 +82,7 @@
 
 /* Touch target grown past the 21px text box. Absolutely positioned, so it is
    not laid out as a flex item of the link and the mark/label gap is untouched. */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .linkedin {
     position: relative;
   }

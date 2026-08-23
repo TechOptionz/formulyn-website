@@ -81,8 +81,15 @@
  * part of the lettering — giving the element a min-height would strand that
  * underline 25px below the text. Grow the hit area with a pseudo-element
  * instead, which is out of flow and so changes nothing that is drawn.
+ *
+ * `pointer: coarse` sits alongside the width because width alone missed the
+ * devices this is for: a large phone in landscape is 900px and more across, so
+ * every touch rule on the site switched itself off at exactly the moment the
+ * hand holding it had not changed. The width half stays for narrow windows on
+ * a desktop, where the same rows are just as cramped. Every other touch-target
+ * block on the site carries this pair for the same reason.
  */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .link {
     position: relative;
   }

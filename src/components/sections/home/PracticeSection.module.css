@@ -94,7 +94,7 @@
  * underline. Grow the hit area with a pseudo-element, which is out of flow and
  * so changes nothing that is drawn.
  */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .more {
     position: relative;
   }

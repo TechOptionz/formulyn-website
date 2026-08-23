@@ -16,7 +16,7 @@ export function Header() {
 
   // Collapse the drawer when the viewport widens back to the full nav.
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 1100px)");
+    const query = window.matchMedia("(min-width: 1140px)");
     const sync = () => {
       if (query.matches) setMenuOpen(false);
     };

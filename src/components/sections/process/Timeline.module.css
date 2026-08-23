@@ -7,7 +7,16 @@
 .segment {
   /* Proportional width comes from --segment-flex, set per segment. */
   flex: var(--segment-flex, 1);
-  min-width: 0;
+  /*
+   * Floored at the label rather than at zero. The labels are `nowrap`, so a
+   * segment allowed to shrink past its own caption simply let the caption
+   * paint outside it: on a 320px screen the closing "W 15–16" ran 13px past
+   * the right edge of the content column, and the short first segment's label
+   * crowded the one beside it. The floor only binds on narrow screens — every
+   * segment is far wider than its two-word label from tablet up — so the bars
+   * stay strictly proportional wherever there is room for them to be.
+   */
+  min-width: min-content;
 }
 
 .bar {

@@ -46,6 +46,21 @@
   height: 26px;
 }
 
+/* Touch target, matching the rail links either side of it. `::after` is
+   already the hover bridge below, so the hit area takes `::before`. Both are
+   out of flow, so the trigger keeps the 38px box that holds --nav-h. */
+@media (pointer: coarse) {
+  .trigger::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
 .caret {
   flex: none;
   opacity: 0.7;
@@ -288,10 +303,18 @@
   min-height: 0;
 }
 
-/* Mobile equivalent of the panel head's overview link. */
+/*
+ * Mobile equivalent of the panel head's overview link. Stood on a touch row
+ * rather than left at its 14px line box: the rows above it are 44px apiece, so
+ * a 34px target at the foot of the list was the one row on the drawer that was
+ * hard to hit. The padding is redistributed rather than added, so the block
+ * keeps the clearance it was drawn with.
+ */
 .accOverview {
-  display: block;
-  padding: 4px 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0 12px;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;

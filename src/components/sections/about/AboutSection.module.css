@@ -87,7 +87,7 @@
 
 /* Touch target grown past the 21px text box, without disturbing the
    mark/label gap — same treatment as the founder link. */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .social {
     position: relative;
   }

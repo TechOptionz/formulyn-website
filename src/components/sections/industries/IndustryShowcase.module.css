@@ -262,7 +262,7 @@
 
 /* Touch target grown past the 20px text box without moving the gold rule that
    sits under the lettering — see the same treatment on the services grid. */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .ctaLink {
     position: relative;
   }

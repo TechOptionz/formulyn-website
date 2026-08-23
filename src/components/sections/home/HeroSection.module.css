@@ -208,25 +208,74 @@
 
 /* ---- Stat strip ---------------------------------------------------- */
 
+/*
+ * Four stats between two rules, divided by hairlines.
+ *
+ * Stepped columns rather than the auto-fit track this used to carry, for two
+ * reasons. Auto-fit put four items into three tracks between roughly 550 and
+ * 710px, which left the fourth hanging alone on a row of its own. And the
+ * rules have to know the column count: they were drawn per cell as a right and
+ * bottom border with the last child excepted, which is only "last in its row"
+ * when everything fits on one line. Below that it left a hairline stranded
+ * down the right edge of every row but the last, and a bottom rule that ran
+ * under one cell instead of the whole strip.
+ *
+ * So the strip owns its own top and bottom rules, and each cell draws only the
+ * dividers that belong to it: a left rule unless it opens a row, a top rule
+ * unless it sits in the first one. The steps below land on the same one, two
+ * and four columns auto-fit gave a full row.
+ */
 .stats {
   max-width: var(--page-max);
   margin: clamp(32px, 4.5vw, 64px) auto 0;
   border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 }
 
 /* Counted in one after the other, left to right, as the copy finishes. */
 .stat {
   padding: clamp(18px, 3vw, 26px) clamp(16px, 2.5vw, 24px);
-  border-right: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
+  border-top: 1px solid var(--line-dark);
   animation: fHeroIn 0.8s var(--ease-out-expo)
     calc(0.8s + var(--stat-index, 0) * 0.09s) both;
 }
 
-.stat:last-child {
-  border-right: none;
+/* One column: the strip's own top rule opens it. */
+.stat:first-child {
+  border-top: none;
+}
+
+@media (min-width: 360px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat:nth-child(2n) {
+    border-left: 1px solid var(--line-dark);
+  }
+
+  .stat:nth-child(2) {
+    border-top: none;
+  }
+}
+
+@media (min-width: 700px) {
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* One row, so every cell but the first opens with a divider and none
+     carries a rule above it. */
+  .stat {
+    border-top: none;
+    border-left: 1px solid var(--line-dark);
+  }
+
+  .stat:first-child {
+    border-left: none;
+  }
 }
 
 .statValue {
