@@ -18,7 +18,9 @@ export const hero = {
 export const heroStats = [
   { value: "5+", label: "Years in R&D" },
   { value: "07", label: "Active categories" },
-  { value: "340", label: "Reference compounds" },
+  // Matches the hero badge above — the same figure rendered two ways read as
+  // two different numbers.
+  { value: "340+", label: "Reference compounds" },
   { value: "30 min", label: "Discovery call" },
 ] as const;
 

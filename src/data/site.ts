@@ -36,7 +36,10 @@ export type NavLink = {
 
 export const site = {
   name: "Formulyn",
-  url: "https://formulyn.com.au",
+  /** The host that actually serves: formulyn.com.au 301s to www. Canonicals,
+      the sitemap and robots.txt are all built from this, so they must agree
+      with it or every canonical points at a URL that redirects elsewhere. */
+  url: "https://www.formulyn.com.au",
   tagline: "From brief to batch.",
   description:
     "Boutique nutraceutical and cosmetic formulation consultancy. Evidence-led supplement, skincare, and wellness formulations from molecular brief to regulatory-ready product.",

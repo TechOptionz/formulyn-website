@@ -1,4 +1,4 @@
-import { mandates } from "@/data/services";
+import { mandates, serviceNavItems } from "@/data/services";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteLink } from "@/components/ui/SiteLink";
 import styles from "./ServicesGrid.module.css";
@@ -26,6 +26,25 @@ export function ServicesGrid() {
             ) : null}
           </Reveal>
         ))}
+      </div>
+
+      {/* The detail pages, linked from their own hub. Without this the only
+          route to them is the nav dropdown, and the hub passes them no
+          internal link equity at all. */}
+      <div className={styles.detail}>
+        <h2 className={styles.detailHeading}>Explore in detail</h2>
+        <div className={styles.detailGrid}>
+          {serviceNavItems.map((item) => (
+            <SiteLink
+              key={item.href}
+              href={item.href}
+              className={styles.detailCell}
+            >
+              <span className={styles.detailTitle}>{item.label}</span>
+              <span className={styles.detailBody}>{item.description}</span>
+            </SiteLink>
+          ))}
+        </div>
       </div>
     </section>
   );

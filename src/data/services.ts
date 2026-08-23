@@ -28,6 +28,7 @@ export const mandates: Mandate[] = [
     title: "Launch-Ready Formula Development",
     tagline: "From concept to compliant formula.",
     body: "Complete product development: ingredient research, literature review, dosage optimisation, stability testing, manufacturing recommendations, and regulatory alignment for TGA / ARTG, EU CPNP and multi-market standards. Built for new brands and first-time founders.",
+    href: "/services/formulation-development",
   },
   {
     index: "[02]",
@@ -373,6 +374,12 @@ export function getServiceDetail(slug: string): ServiceDetail | undefined {
  * Adding an entry here adds a row to the desktop dropdown and the mobile
  * accordion; nothing in the components needs to change. `icon` resolves
  * through `serviceIcons` in components/ui/icons.tsx.
+ */
+/**
+ * The service detail pages, as listed in the nav dropdown and — since they
+ * are the pages best positioned to rank — linked from the /services hub too.
+ * The hub previously linked to none of them, so it passed no internal link
+ * equity down to its own children.
  */
 export const serviceNavItems: NavChild[] = [
   {
