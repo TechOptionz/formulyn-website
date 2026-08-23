@@ -50,7 +50,14 @@ export function HeroSection() {
               src={hero.image.src}
               alt={hero.image.alt}
               className={`${styles.image} scrollZoom`}
-              sizes="(max-width: 900px) 100vw, 50vw"
+              /* The grid goes two-up at ~1025px, not at 900: the columns are
+                 auto-fit at a 440px minimum, so the switch follows the gutter
+                 and the gap rather than a breakpoint. At 900 the browser was
+                 fetching a half-width file for a full-width slot on every
+                 tablet in landscape. 1040 rounds past the real switch, which
+                 errs toward a file that is larger than the slot rather than
+                 softer than it. */
+              sizes="(max-width: 1040px) 100vw, 50vw"
               fill
               priority
             />

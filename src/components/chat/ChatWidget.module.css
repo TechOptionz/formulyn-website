@@ -59,11 +59,24 @@
 
 /* ---- Panel ---------------------------------------------------------- */
 
+/*
+ * The panel hangs off the launcher in the bottom corner, so its height has to
+ * be measured against what the reader can actually see. `vh` on a phone is the
+ * *large* viewport — the page as it looks with the browser toolbars retracted —
+ * so a panel sized in `vh` and anchored to the bottom pushed its own header,
+ * title and close button above the top of the visible area whenever the
+ * toolbars were showing. The cap below is in `dvh`, and it subtracts the stack
+ * the panel sits on top of: the launcher, the gap above it, and the root's own
+ * offset from the bottom edge, plus a margin so the panel never runs flush to
+ * the top. `vh` is left in front of it for engines without `dvh`.
+ */
 .panel {
   display: flex;
   flex-direction: column;
   width: min(92vw, 400px);
   height: min(72vh, 560px);
+  max-height: calc(100vh - var(--chat-clearance) - 14px - 16px);
+  max-height: calc(100dvh - var(--chat-clearance) - 14px - 16px);
   background: var(--c-ink);
   border: 1px solid var(--line-dark-strong);
   border-radius: 2px;
@@ -104,6 +117,7 @@
 }
 
 .close {
+  position: relative;
   flex: none;
   width: 32px;
   height: 32px;
@@ -120,6 +134,22 @@
   transition:
     color 0.25s,
     border-color 0.25s;
+}
+
+/*
+ * Touch target. The drawn button is a 32px square by design — it sits against
+ * the panel title and a larger box would crowd it — so the hit area is grown
+ * with a pseudo-element, which is out of flow and changes nothing that is
+ * painted. Same treatment as the underlined links elsewhere on the site.
+ */
+.close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .close:hover {
@@ -273,6 +303,19 @@
 
 .input:focus {
   border-color: var(--c-gold);
+}
+
+/*
+ * iOS Safari zooms the whole page in when a form control below 16px takes
+ * focus, and does not zoom back out afterwards — the reader is left on a
+ * magnified, sideways-scrolled page with the composer half off-screen. 14px is
+ * the drawn size and stays that everywhere a pointer is doing the typing; only
+ * touch gets the floor raised.
+ */
+@media (pointer: coarse) {
+  .input {
+    font-size: 16px;
+  }
 }
 
 .send {

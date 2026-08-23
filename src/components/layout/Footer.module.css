@@ -129,8 +129,11 @@
  * Standing each link on a 44px box and taking the spacing back out of the gap
  * keeps the column's overall rhythm close to the drawn design while making the
  * rows separately tappable.
+ *
+ * Keyed to the pointer as well as the width — see the services grid: a large
+ * phone in landscape is wider than 860px and still a phone.
  */
-@media (max-width: 860px) {
+@media (max-width: 860px), (pointer: coarse) {
   .columnList {
     gap: 2px;
   }

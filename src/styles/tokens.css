@@ -93,9 +93,12 @@
 
   /* Breakpoint at which the nav collapses (documented for reference;
      media queries cannot read custom properties). Measured: with Services on
-     the rail the row needs 1041px before it wraps to a second line, so the
-     drawer takes over below 1100px rather than the old 900px. */
-  --bp-nav: 1100px;
+     the rail the row needs 1041px in Jost and Inter, but ~1125px in the metric
+     fallbacks that stand in while those two load — at 1100px the bar visibly
+     wrapped to two rows and snapped back on every cold load between 1100 and
+     1129px. The drawer takes over below 1140px, which clears the fallback
+     measurement as well as the shipped one. */
+  --bp-nav: 1140px;
 }
 
 /*
@@ -105,7 +108,7 @@
  * Sticky offsets and scroll-margins keyed to --nav-h land under the bar on
  * every phone otherwise; correct the token itself rather than each consumer.
  */
-@media (max-width: 1099px) {
+@media (max-width: 1139px) {
   :root {
     --nav-h: 73px;
   }

@@ -30,9 +30,18 @@
   flex-wrap: wrap;
 }
 
+/*
+ * `min-width` is an outer width here — no global border-box reset in this
+ * project, so on the default content box the 180px floor stood for a 214px
+ * field once its padding and hairline were counted, against the 222px the
+ * panel leaves inside its own border at 320px. Eight pixels is not a margin.
+ * Opting into border-box makes the floor mean what it says, and `min()` drops
+ * it altogether on anything narrower than the field itself.
+ */
 .input {
+  box-sizing: border-box;
   flex: 1;
-  min-width: 180px;
+  min-width: min(180px, 100%);
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--c-graphite);
@@ -41,6 +50,14 @@
   border-radius: 2px;
   padding: 14px 16px;
   outline: none;
+}
+
+/* See the brief form: iOS Safari zooms in on a control below 16px and stays
+   zoomed, so touch gets the floor raised and pointers keep the drawn size. */
+@media (pointer: coarse) {
+  .input {
+    font-size: 16px;
+  }
 }
 
 .submit {
