@@ -147,25 +147,33 @@
   border-radius: 2px;
   padding: 12px 15px;
   text-wrap: pretty;
-  white-space: pre-wrap;
 }
 
+/*
+ * Assistant replies come back as markdown and are rendered as real blocks by
+ * Markdown.tsx — no pre-wrap here, or every list would gain a blank line.
+ * They also run wider than a user turn: numbered steps need the room.
+ */
 .assistant {
   align-self: flex-start;
+  max-width: 94%;
   background: var(--wash-cream);
   border: 1px solid var(--line-dark);
   color: var(--c-cream);
 }
 
+/* Typed text is shown verbatim, so its own line breaks must survive. */
 .user {
   align-self: flex-end;
   background: var(--c-gold);
   color: var(--c-ink);
   border: 1px solid var(--c-gold);
+  white-space: pre-wrap;
 }
 
 .error {
   align-self: flex-start;
+  max-width: 94%;
   background: transparent;
   border: 1px solid var(--line-gold);
   color: var(--c-gold-light);

@@ -5,6 +5,7 @@ import { chatUi, greeting, leadFlow, suggestions } from "@/data/chat";
 import { site } from "@/data/site";
 import { isValidEmail } from "@/lib/chat/validate";
 import type { ChatMessage } from "@/lib/chat/types";
+import { Markdown } from "./Markdown";
 import styles from "./ChatWidget.module.css";
 
 /**
@@ -237,7 +238,11 @@ export function ChatWidget() {
                       : styles.assistant,
                 ].join(" ")}
               >
-                {entry.content}
+                {entry.role === "assistant" ? (
+                  <Markdown text={entry.content} />
+                ) : (
+                  entry.content
+                )}
               </div>
             ))}
 

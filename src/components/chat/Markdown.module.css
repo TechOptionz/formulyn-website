@@ -1,0 +1,96 @@
+/*
+ * Typography for rendered assistant replies. The bubble supplies colour and
+ * font size; this file only handles the rhythm between blocks — the spacing
+ * that was missing when replies printed as one unbroken string.
+ */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* Looser than the bubble default — chat answers are read at a glance. */
+  line-height: 1.75;
+}
+
+.paragraph {
+  margin: 0;
+  /* Keep single newlines the model sent inside a paragraph. */
+  white-space: pre-line;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+/*
+ * Deliberately NOT a flex column. Flex blockifies the items and Chrome then
+ * drops ::marker entirely, which is what left the steps stacked but with no
+ * visible "1." in front of them. Plain block layout keeps the markers; the
+ * spacing comes from margins instead of gap.
+ */
+.ordered,
+.unordered {
+  margin: 0;
+  /* Room for the marker, which sits outside in the gutter so wrapped lines
+     align under the text rather than under the number. */
+  padding-left: 26px;
+  list-style-position: outside;
+}
+
+.ordered {
+  list-style-type: decimal;
+}
+
+.unordered {
+  list-style-type: disc;
+}
+
+.item {
+  padding-left: 4px;
+  /* Long step titles wrap rather than widen the panel. */
+  overflow-wrap: anywhere;
+}
+
+.item + .item {
+  margin-top: 12px;
+}
+
+.item::marker {
+  color: var(--c-gold);
+  font-weight: 600;
+}
+
+.body strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+.body em {
+  font-style: italic;
+}
+
+.code {
+  font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.9em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: var(--wash-cream);
+  border: 1px solid var(--line-dark);
+}
+
+.link {
+  color: var(--c-gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.link:hover {
+  color: var(--c-gold-light);
+}
