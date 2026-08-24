@@ -1,9 +1,10 @@
-import { founder } from "@/data/about";
+import { coLeader, founder } from "@/data/about";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 
 const ORG_ID = `${site.url}/#organization`;
 const FOUNDER_ID = `${site.url}/#founder`;
+const COO_ID = `${site.url}/#coo`;
 
 /**
  * Site-wide entity graph, emitted once from the root layout.
@@ -62,7 +63,7 @@ export const siteLd = {
         "GMP manufacturer sourcing",
         ...industries.map((industry) => industry.title),
       ],
-      founder: { "@id": FOUNDER_ID },
+      founder: [{ "@id": FOUNDER_ID }, { "@id": COO_ID }],
       sameAs: [site.linkedin, site.instagram],
     },
     {
@@ -80,6 +81,25 @@ export const siteLd = {
         "Pharmaceutical formulation",
       ],
       sameAs: [founder.linkedin],
+    },
+    {
+      /* The other half of the practice. Everything here is stated on his own
+         LinkedIn profile. `alumniOf` names the university and stops there —
+         the profile does not name a qualification, and this is the last place
+         to guess at one. */
+      "@type": "Person",
+      "@id": COO_ID,
+      name: coLeader.name,
+      jobTitle: coLeader.role,
+      description: coLeader.bio,
+      image: new URL(coLeader.photo.src, site.url).toString(),
+      worksFor: { "@id": ORG_ID },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Griffith University",
+      },
+      knowsAbout: ["Business operations", "Social work", "Community services"],
+      sameAs: [coLeader.linkedin],
     },
     {
       "@type": "WebSite",

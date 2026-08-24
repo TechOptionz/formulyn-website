@@ -10,6 +10,11 @@ type SectionHeadingProps = {
   intro?: string;
   /** Colour set for the surface the heading sits on. */
   tone: "light" | "dark";
+  /**
+   * Eyebrow and heading left with the intro pushed to the opposite edge
+   * ("split", the site default), or the three stacked and centred.
+   */
+  align?: "split" | "center";
   /** Per-section design values, passed straight through as CSS lengths. */
   headingSize?: string;
   headingMax?: string;
@@ -22,6 +27,7 @@ export function SectionHeading({
   heading,
   intro,
   tone,
+  align = "split",
   headingSize,
   headingMax,
   introMax,
@@ -40,7 +46,12 @@ export function SectionHeading({
    * arriving in one piece.
    */
   return (
-    <div className={`${styles.head} ${styles[tone]}`} style={vars}>
+    <div
+      className={[styles.head, styles[tone], align === "center" && styles.center]
+        .filter(Boolean)
+        .join(" ")}
+      style={vars}
+    >
       <div>
         <Reveal as="p" className={styles.eyebrow}>
           {eyebrow}
