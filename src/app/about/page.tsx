@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
 import { AboutSection } from "@/components/sections/about/AboutSection";
 import { PrinciplesSection } from "@/components/sections/about/PrinciplesSection";
-import { FounderSection } from "@/components/sections/about/FounderSection";
+import { LeadershipSection } from "@/components/sections/about/LeadershipSection";
 import { CtaBanner } from "@/components/layout/CtaBanner";
 
 export const metadata = pageMetadata({
@@ -29,7 +29,7 @@ export default function AboutPage() {
       />
       <AboutSection />
       <PrinciplesSection />
-      <FounderSection />
+      <LeadershipSection />
       <CtaBanner />
     </>
   );

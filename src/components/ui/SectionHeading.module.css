@@ -44,6 +44,27 @@
   text-wrap: pretty;
 }
 
+/* ---- Alignment ----------------------------------------------------- */
+
+/*
+ * Stacked and centred, for a section that introduces people rather than an
+ * argument. The intro drops under the heading instead of sitting opposite it,
+ * so it needs a wider default measure than the 380px side column.
+ */
+.center {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+.center .intro {
+  max-width: var(--intro-max, 54ch);
+  /* Centred, an orphaned last line reads as a mistake rather than a wrap. */
+  text-wrap: balance;
+}
+
 /* ---- Tones --------------------------------------------------------- */
 
 .light .eyebrow {

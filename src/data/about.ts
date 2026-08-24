@@ -65,16 +65,33 @@ export const principles: Principle[] = [
 ];
 
 /**
- * The founder block. The page argues for the practice first; this establishes
- * who stands behind it.
+ * The leadership block. The page argues for the practice first; this
+ * establishes who stands behind it.
  */
-export const founder = {
+export const leadershipSection = {
   eyebrow: "Who you work with",
+  heading: "Leadership rooted in science. Driven by purpose",
+  intro:
+    "The people behind the practice — the science it stands on, and the way it is run.",
+} as const;
+
+/** One person in the leadership row. */
+export type Leader = {
+  name: string;
+  role: string;
+  photo: { src: string; alt: string };
+  bio: string;
+  credentials: readonly string[];
+  linkedin: string;
+  quote: string;
+};
+
+export const founder = {
   name: "Romaisa Irfan",
   role: "Founder & Chief Formulation Scientist",
   photo: {
     /* Pre-masked to a circle with a transparent surround, so it sits flush
-       inside the round frame in FounderSection.
+       inside the round frame in LeadershipSection.
        The filename carries the year on purpose. Replacing a portrait in place
        leaves every image cache between here and the browser — Next's
        optimizer included — free to keep serving the previous one, and those
@@ -89,9 +106,44 @@ export const founder = {
     "Masters-level formulation R&D",
     "Nutraceutical · Cosmetic · Pharmaceutical",
   ],
-  /** Also emitted as `sameAs` on the founder's Person node in the page JSON-LD,
-      which is what ties this page's founder to the same real person. */
+  /** Also emitted as `sameAs` on the founder's Person node in the site JSON-LD,
+      which is what ties this site's founder to the same real person. */
   linkedin: "https://www.linkedin.com/in/romaisa-irfan-b7336519a/",
   quote:
     "We treat each formula as a small thesis — defended by literature, stress-tested by trial, and shipped with its workings.",
-} as const;
+} as const satisfies Leader;
+
+/**
+ * Sourced from his own LinkedIn profile — title, employer, location, the
+ * Griffith University entry, and the social-work background are all stated
+ * there. Nothing here is inferred beyond that: no degree is named because the
+ * profile names none.
+ */
+export const coLeader = {
+  name: "Muhammad Abubakar Latif",
+  /* Reordered against the profile's "Chief Operating Officer & Co-Founder" so
+     it sets parallel to the founder's line above it. Same two facts. */
+  role: "Co-Founder & Chief Operating Officer",
+  photo: {
+    /* Same circular pre-mask and year-stamped filename convention as above. */
+    src: "/leader-abubakar-latif-2026.webp",
+    alt: "Muhammad Abubakar Latif, Co-Founder and Chief Operating Officer at Formulyn",
+  },
+  bio: "A social worker by background, with years in child safety and community services, now running the operational and financial side of the practice with the same people-first instinct.",
+  credentials: [
+    "Social work in child safety and community services",
+    "Educated at Griffith University",
+    "Operations · Finance · Client care",
+  ],
+  linkedin:
+    "https://www.linkedin.com/in/muhammad-abubakar-latif-2a220816b/",
+  quote:
+    "Every client is treated with genuine care, not processed like a number. This business stays personal, even as it grows.",
+} as const satisfies Leader;
+
+/**
+ * The row, in order. `LeadershipSection` renders straight off this array, so a
+ * third person is a data edit — add them here and widen the grid template in
+ * `LeadershipSection.module.css`.
+ */
+export const leaders: readonly Leader[] = [founder, coLeader];
