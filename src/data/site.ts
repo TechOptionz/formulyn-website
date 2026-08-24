@@ -93,5 +93,17 @@ export const footerPracticeLinks: NavLink[] = navLinks.filter(
   (link) => !FOOTER_OMIT.has(link.href),
 );
 
+/**
+ * Footer legal row, sitting alongside the copyright line.
+ *
+ * Deliberately kept out of `navLinks`: the policy page is a footer document,
+ * not a destination the primary rail should spend a slot on. /privacy is also
+ * the privacy policy URL declared on the Formulyn LinkedIn developer app, so
+ * the path has to keep resolving.
+ */
+export const footerLegalLinks: NavLink[] = [
+  { label: "Privacy Policy", href: "/privacy" },
+];
+
 export const footerBlurb =
   "Research and development consultancy building evidence-led formulations for supplement, skincare, and wellness brands across Australia and beyond.";

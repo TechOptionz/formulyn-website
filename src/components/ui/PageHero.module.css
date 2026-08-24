@@ -35,11 +35,12 @@
 .heading {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(40px, 5.6vw, 80px);
+  /* Size is overridable per page via --heading-size; measure via
+     --heading-measure. Both are set by the call site, not here. */
+  font-size: var(--heading-size, clamp(40px, 5.6vw, 80px));
   line-height: 1.06;
   letter-spacing: -0.02em;
   margin: 0;
-  /* Measure is set per page via the --heading-measure custom property. */
   max-width: var(--heading-measure, 16ch);
   text-wrap: balance;
 }

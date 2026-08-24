@@ -112,6 +112,8 @@
   flex-shrink: 0;
 }
 
+/* Copyright at one end, the legal links at the other; both drop onto their
+   own line, still left-aligned, once the row runs out of width. */
 .legal {
   max-width: var(--page-max);
   margin: 48px auto 0;
@@ -119,6 +121,27 @@
   padding-top: 24px;
   font-size: 12px;
   color: var(--c-sage-dim);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.legalLink {
+  font-size: 12px;
+  color: var(--c-sage);
+}
+
+.legalLink:hover {
+  color: var(--c-gold-light);
 }
 
 /*
@@ -140,7 +163,8 @@
 
   .columnLink,
   .goldLink,
-  .social {
+  .social,
+  .legalLink {
     display: flex;
     align-items: center;
     min-height: 44px;
