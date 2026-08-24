@@ -5,8 +5,8 @@
 
 .root {
   position: fixed;
-  right: clamp(16px, 3vw, 32px);
-  bottom: clamp(16px, 3vw, 32px);
+  right: var(--chat-offset);
+  bottom: var(--chat-offset);
   z-index: 60;
   display: flex;
   flex-direction: column;
@@ -60,23 +60,24 @@
 /* ---- Panel ---------------------------------------------------------- */
 
 /*
- * The panel hangs off the launcher in the bottom corner, so its height has to
- * be measured against what the reader can actually see. `vh` on a phone is the
- * *large* viewport — the page as it looks with the browser toolbars retracted —
- * so a panel sized in `vh` and anchored to the bottom pushed its own header,
- * title and close button above the top of the visible area whenever the
- * toolbars were showing. The cap below is in `dvh`, and it subtracts the stack
- * the panel sits on top of: the launcher, the gap above it, and the root's own
- * offset from the bottom edge, plus a margin so the panel never runs flush to
- * the top. `vh` is left in front of it for engines without `dvh`.
+ * The panel sits in the bottom corner, so its height has to be measured
+ * against what the reader can actually see. `vh` on a phone is the *large*
+ * viewport — the page as it looks with the browser toolbars retracted — so a
+ * panel sized in `vh` and anchored to the bottom pushed its own header, title
+ * and close button above the top of the visible area whenever the toolbars
+ * were showing. The cap below is in `dvh`, and it subtracts the root's own
+ * offset from the bottom edge plus a margin so the panel never runs flush to
+ * the top. The launcher is unmounted while the panel is open, so nothing else
+ * is stacked underneath and none of its height needs reserving here. `vh` is
+ * left in front for engines without `dvh`.
  */
 .panel {
   display: flex;
   flex-direction: column;
   width: min(92vw, 400px);
   height: min(72vh, 560px);
-  max-height: calc(100vh - var(--chat-clearance) - 14px - 16px);
-  max-height: calc(100dvh - var(--chat-clearance) - 14px - 16px);
+  max-height: calc(100vh - var(--chat-offset) - 16px);
+  max-height: calc(100dvh - var(--chat-offset) - 16px);
   background: var(--c-ink);
   border: 1px solid var(--line-dark-strong);
   border-radius: 2px;
@@ -124,15 +125,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  line-height: 1;
   color: var(--c-sage-muted);
   background: transparent;
-  border: 1px solid var(--line-dark-input);
+  border: 1px solid var(--line-dark-button);
   border-radius: 2px;
   cursor: pointer;
   transition:
     color 0.25s,
+    background 0.25s,
     border-color 0.25s;
 }
 
@@ -152,8 +152,10 @@
   transform: translate(-50%, -50%);
 }
 
-.close:hover {
-  color: var(--c-cream);
+.close:hover,
+.close:focus-visible {
+  color: var(--c-gold-light);
+  background: var(--wash-gold);
   border-color: var(--c-gold);
 }
 

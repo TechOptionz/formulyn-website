@@ -70,6 +70,16 @@ export function Caret(props: IconProps) {
   );
 }
 
+/** Dismiss cross for the chat panel — same hairline grid as the nav icons. */
+export function Close(props: IconProps) {
+  return (
+    <LineIcon strokeWidth="1.5" {...props}>
+      <path d="M6.6 6.6 17.4 17.4" />
+      <path d="M17.4 6.6 6.6 17.4" />
+    </LineIcon>
+  );
+}
+
 /** Resolves a `NavChild.icon` key to its component. */
 export const serviceIcons: Record<
   NavIconName,
