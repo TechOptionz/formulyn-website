@@ -1,4 +1,9 @@
-import { footerBlurb, footerPracticeLinks, site } from "@/data/site";
+import {
+  footerBlurb,
+  footerLegalLinks,
+  footerPracticeLinks,
+  site,
+} from "@/data/site";
 import { SiteLink } from "@/components/ui/SiteLink";
 import { Logo } from "@/components/ui/Logo";
 import { Instagram, LinkedIn } from "@/components/ui/icons";
@@ -71,7 +76,20 @@ export function Footer() {
         </div>
       </div>
 
-      <div className={styles.legal}>{site.copyright}</div>
+      <div className={styles.legal}>
+        <span>{site.copyright}</span>
+        <div className={styles.legalLinks}>
+          {footerLegalLinks.map((link) => (
+            <SiteLink
+              key={link.href}
+              href={link.href}
+              className={styles.legalLink}
+            >
+              {link.label}
+            </SiteLink>
+          ))}
+        </div>
+      </div>
     </footer>
   );
 }

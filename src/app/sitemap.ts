@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7 },
     { path: "/journal", priority: 0.6 },
     { path: "/contact", priority: 0.9 },
+    // Indexable and linked from every page's footer, but a supporting
+    // document rather than a page anyone searches for.
+    { path: "/privacy", priority: 0.3 },
   ];
 
   return [

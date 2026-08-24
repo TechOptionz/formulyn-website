@@ -9,6 +9,12 @@ type PageHeroProps = {
   body?: string;
   /** Heading measure in `ch`, matching the design per page. */
   headingMeasure?: number;
+  /**
+   * Overrides the masthead type size, as a CSS length. For pages whose
+   * heading is a label rather than a statement — the policy document — and
+   * would read as shouting at the display size.
+   */
+  headingSize?: string;
 };
 
 /**
@@ -20,6 +26,7 @@ export function PageHero({
   heading,
   body,
   headingMeasure = 16,
+  headingSize,
 }: PageHeroProps) {
   return (
     <header className={`${styles.hero} motionScene`}>
@@ -28,7 +35,12 @@ export function PageHero({
         <AnimatedText
           as="h1"
           className={styles.heading}
-          style={{ "--heading-measure": `${headingMeasure}ch` } as CSSProperties}
+          style={
+            {
+              "--heading-measure": `${headingMeasure}ch`,
+              "--heading-size": headingSize,
+            } as CSSProperties
+          }
           text={heading}
           trailing={<Stop />}
           delay={120}
