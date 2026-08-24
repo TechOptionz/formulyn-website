@@ -204,6 +204,34 @@
   display: block;
   height: 1.5px;
   background: var(--c-cream);
+  transition:
+    transform 220ms ease,
+    opacity 120ms ease;
+}
+
+/*
+ * Open state: the same three bars become the close mark, so the control the
+ * drawer was opened from is the control that shuts it — no second button, and
+ * the touch target never moves. 6.5px is the centre-to-centre step between
+ * bars (1.5px bar + 5px gap), which is what folds the outer two onto the
+ * middle before they rotate.
+ */
+.burgerOpen span:first-child {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen span:last-child {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .burger span {
+    transition: none;
+  }
 }
 
 /* ---- Read progress ------------------------------------------------- */
@@ -313,6 +341,16 @@
     );
     overflow-y: auto;
     overscroll-behavior: contain;
+
+    /* The drawer is chromeless, so a scrollbar gutter running down its right
+       edge reads as a stray rule against the panel. Hide the track; the
+       scrolling the cap above depends on stays. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .drawer::-webkit-scrollbar {
+    display: none;
   }
 
   /*

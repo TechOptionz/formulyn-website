@@ -76,12 +76,15 @@
   --nav-h: 71px;
 
   /*
-   * Room the floating chat launcher occupies in the bottom corner: its own
-   * offset from the edge plus its height. Content that would otherwise be
-   * pinned underneath it — the last strip of the document, which cannot be
-   * scrolled clear — reserves this much.
+   * How far the floating chat widget is inset from the bottom-right corner,
+   * and the room its launcher occupies there — that inset plus the launcher's
+   * height. Content that would otherwise be pinned underneath the launcher —
+   * the last strip of the document, which cannot be scrolled clear — reserves
+   * the clearance. The open panel replaces the launcher rather than stacking
+   * above it, so it measures against the inset alone.
    */
-  --chat-clearance: calc(clamp(16px, 3vw, 32px) + 48px);
+  --chat-offset: clamp(16px, 3vw, 32px);
+  --chat-clearance: calc(var(--chat-offset) + 48px);
 
   /* Vertical rhythm for full-bleed sections */
   --section-y: clamp(72px, 9vw, 120px);

@@ -68,9 +68,10 @@ export function Header() {
         </SiteLink>
         <button
           type="button"
-          className={styles.burger}
-          aria-label="Menu"
+          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ""}`}
+          aria-label={menuOpen ? "Close menu" : "Menu"}
           aria-expanded={menuOpen}
+          aria-controls="site-nav-drawer"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span />
@@ -84,7 +85,7 @@ export function Header() {
       </div>
 
       {menuOpen ? (
-        <div className={styles.drawer}>
+        <div id="site-nav-drawer" className={styles.drawer}>
           {navLinks.map((link) =>
             link.children ? (
               <NavAccordion

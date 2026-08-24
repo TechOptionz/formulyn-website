@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { chatUi, greeting, leadFlow, suggestions } from "@/data/chat";
 import { site } from "@/data/site";
+import { Close } from "@/components/ui/icons";
 import { isValidEmail } from "@/lib/chat/validate";
 import type { ChatMessage } from "@/lib/chat/types";
 import styles from "./ChatWidget.module.css";
@@ -220,7 +221,7 @@ export function ChatWidget() {
               onClick={() => setOpen(false)}
               aria-label={chatUi.closeLabel}
             >
-              ×
+              <Close />
             </button>
           </div>
 
@@ -301,16 +302,24 @@ export function ChatWidget() {
         </div>
       ) : null}
 
-      <button
-        type="button"
-        className={styles.launcher}
-        onClick={() => setOpen((value) => !value)}
-        aria-expanded={open}
-        aria-label={open ? chatUi.closeLabel : chatUi.launcherAriaLabel}
-      >
-        <span className={styles.launcherDot} aria-hidden="true" />
-        {open ? "Close" : chatUi.launcherLabel}
-      </button>
+      {/*
+        The launcher is the closed state of the widget only. Once the panel is
+        up it carries its own dismiss control in the header, so a second one
+        parked underneath is redundant — and on a phone it costs the panel a
+        row of height it would rather spend on the transcript.
+      */}
+      {open ? null : (
+        <button
+          type="button"
+          className={styles.launcher}
+          onClick={() => setOpen(true)}
+          aria-expanded={false}
+          aria-label={chatUi.launcherAriaLabel}
+        >
+          <span className={styles.launcherDot} aria-hidden="true" />
+          {chatUi.launcherLabel}
+        </button>
+      )}
     </div>
   );
 }
