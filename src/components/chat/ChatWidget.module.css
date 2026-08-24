@@ -120,8 +120,8 @@
 .close {
   position: relative;
   flex: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,11 +133,23 @@
   transition:
     color 0.25s,
     background 0.25s,
-    border-color 0.25s;
+    border-color 0.25s,
+    transform 0.12s;
 }
 
 /*
- * Touch target. The drawn button is a 32px square by design — it sits against
+ * The cross itself, sized past what the shared 16px icon default draws: on a
+ * 24 grid the mark spans 13 units, so at 22px it reads as an ~12px cross in
+ * the 36px box — a third of the button, the proportion a close control wants
+ * to look deliberate rather than incidental.
+ */
+.close svg {
+  width: 22px;
+  height: 22px;
+}
+
+/*
+ * Touch target. The drawn button is a 36px square by design — it sits against
  * the panel title and a larger box would crowd it — so the hit area is grown
  * with a pseudo-element, which is out of flow and changes nothing that is
  * painted. Same treatment as the underlined links elsewhere on the site.
@@ -157,6 +169,11 @@
   color: var(--c-gold-light);
   background: var(--wash-gold);
   border-color: var(--c-gold);
+}
+
+/* A press reads on the button, not just the cursor. */
+.close:active {
+  transform: scale(0.94);
 }
 
 /* ---- Transcript ----------------------------------------------------- */
