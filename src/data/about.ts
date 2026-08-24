@@ -114,10 +114,10 @@ export const founder = {
 } as const satisfies Leader;
 
 /**
- * Sourced from his own LinkedIn profile — title, employer, location, the
- * Griffith University entry, and the social-work background are all stated
- * there. Nothing here is inferred beyond that: no degree is named because the
- * profile names none.
+ * Sourced from his own LinkedIn profile — title, employer, location, and the
+ * Griffith University entry are all stated there. Nothing here is inferred
+ * beyond that: no degree is named because the profile names none, and the
+ * earlier career is described by what it involved rather than by a job title.
  */
 export const coLeader = {
   name: "Muhammad Abubakar Latif",
@@ -129,11 +129,13 @@ export const coLeader = {
     src: "/leader-abubakar-latif-2026.webp",
     alt: "Muhammad Abubakar Latif, Co-Founder and Chief Operating Officer at Formulyn",
   },
-  bio: "A social worker by background, with years in child safety and community services, now running the operational and financial side of the practice with the same people-first instinct.",
+  bio: "Runs the operational and financial side of the practice, from client engagement through to project delivery — backed by years of frontline experience working directly with people and navigating complex, high-stakes systems.",
+  /* Ordered to set parallel with the founder's list above: the qualification
+     first, then the discipline, then the dot-separated remit last. */
   credentials: [
-    "Social work in child safety and community services",
     "Educated at Griffith University",
-    "Operations · Finance · Client care",
+    "Client relations and stakeholder communication",
+    "Operations · Finance · Client experience",
   ],
   linkedin:
     "https://www.linkedin.com/in/muhammad-abubakar-latif-2a220816b/",
@@ -142,8 +144,9 @@ export const coLeader = {
 } as const satisfies Leader;
 
 /**
- * The row, in order. `LeadershipSection` renders straight off this array, so a
- * third person is a data edit — add them here and widen the grid template in
- * `LeadershipSection.module.css`.
+ * The row, in order — co-leader on the left, founder on the right.
+ * `LeadershipSection` renders straight off this array, so both the order and a
+ * third person are data edits: reorder here, or add someone and widen the grid
+ * template in `LeadershipSection.module.css`.
  */
-export const leaders: readonly Leader[] = [founder, coLeader];
+export const leaders: readonly Leader[] = [coLeader, founder];
