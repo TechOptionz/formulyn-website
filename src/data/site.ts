@@ -51,6 +51,7 @@ export const site = {
       in data/about.ts. Also emitted as `sameAs` on the Organization JSON-LD. */
   linkedin: "https://www.linkedin.com/company/formulyn/",
   instagram: "https://www.instagram.com/formulyn/",
+  facebook: "https://www.facebook.com/formulyn/",
   availability: "Accepting briefs for Q3",
   copyright: "© 2026 Formulyn. All rights reserved.",
 } as const;

@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
   title:
     "Nutraceutical & Cosmetic Formulation Consultancy | TGA, EU & UK | Formulyn",
   description: site.description,
-  // Already ends in the brand name; the layout's `%s — Formulyn` template
+  // Already ends in the brand name; the layout's `%s | Formulyn` template
   // would otherwise append it twice.
   absoluteTitle: true,
 });

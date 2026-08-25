@@ -162,7 +162,7 @@ export function BriefForm() {
 
       <p className={styles.formStatus} role="status" aria-live="polite">
         {status === "sent"
-          ? "Thank you — we'll be in touch within one business day."
+          ? "Thank you. We'll be in touch within one business day."
           : status === "error"
             ? `${error} Email ${site.email} and it'll reach the same place.`
             : ""}

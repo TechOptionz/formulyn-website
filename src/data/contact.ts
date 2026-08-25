@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 export const contactHero = {
   eyebrow: "Next step",
   heading: "Begin with a 30-minute discovery call",
-  body: "A focused conversation to understand your product and scope what's possible — no pressure, no pitch.",
+  body: "A focused conversation to understand your product and scope what's possible. No pressure, no pitch.",
 } as const;
 
 /** A text input in the brief form's two-column field grid. */
@@ -133,7 +133,7 @@ export const briefSteps = [
 export const ctaBanner = {
   eyebrow: "Next step",
   heading: "Begin with a 30-minute discovery call",
-  body: "A focused conversation to understand your product and scope what's possible — no pressure, no pitch.",
+  body: "A focused conversation to understand your product and scope what's possible. No pressure, no pitch.",
   /* Anchored on the brief form, not the page: the banner is rendered on every
      route, and a bare /contact href is a dead click for anyone already there. */
   cta: { label: "Book the call →", href: "/contact#brief" },

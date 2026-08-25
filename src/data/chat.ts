@@ -27,7 +27,7 @@ export const chatUi = {
 } as const;
 
 export const greeting =
-  "Hello. I can answer questions about how we work — the process, timelines, categories, IP and regulatory pathways. What are you working on?";
+  "Hello. I can answer questions about how we work: the process, timelines, categories, IP and regulatory pathways. What are you working on?";
 
 /**
  * Tappable starter questions on the opening screen. Clicking one sends it
@@ -39,20 +39,20 @@ export const suggestions = [
   "What does the process look like, start to finish?",
   "Who will I be working with?",
   "How much does a project cost?",
-  "I just have an idea — can you still help?",
+  "I just have an idea. Can you still help?",
 ] as const;
 
 /** ---- Lead capture ------------------------------------------------- */
 
 export const leadFlow = {
   intro:
-    "Happy to get this in front of the team. Three quick questions — you can stop at any point.",
+    "Happy to get this in front of the team. Three quick questions, and you can stop at any point.",
   name: "First, what's your name?",
   email: "Thanks. What's the best email to reach you on?",
-  brief: "And in a sentence — what are you trying to make?",
+  brief: "And in a sentence, what are you trying to make?",
   invalidEmail: "That doesn't look like an email address. Mind checking it?",
   success:
-    "Got it — thank you. We'll be in touch within one business day. If you'd rather book a time directly, the discovery call link is on the contact page.",
+    "Got it, thank you. We'll be in touch within one business day. If you'd rather book a time directly, the discovery call link is on the contact page.",
   failure: `Something went wrong sending that through. Email ${site.email} and it'll reach the same place.`,
 } as const;
 
@@ -79,12 +79,12 @@ export const demoAnswers: DemoAnswer[] = [
       // compliance?"), so as a phrase it outscored the specific entries.
     ],
     answer:
-      "Formulyn is a boutique nutraceutical and cosmetic formulation R&D consultancy — we turn a product idea into a validated, evidence-backed formula and a regulatory-ready dossier. We don't manufacture, deliberately, so the formula is built around what the product needs rather than what a factory happens to stock. We then help you find and compare independent manufacturers.",
+      "Formulyn is a boutique nutraceutical and cosmetic formulation R&D consultancy. We turn a product idea into a validated, evidence-backed formula and a regulatory-ready dossier. We don't manufacture, deliberately, so the formula is built around what the product needs rather than what a factory happens to stock. We then help you find and compare independent manufacturers.",
   },
   {
     keywords: ["how long", "timeline", "time", "weeks", "duration", "fast"],
     answer:
-      "Indicatively around 16 weeks, though it varies with scope — category, regulatory pathway and how much testing the product needs all move it. The discovery call is where we scope yours properly.",
+      "Indicatively around 16 weeks, though it varies with scope: category, regulatory pathway and how much testing the product needs all move it. The discovery call is where we scope yours properly.",
   },
   {
     keywords: ["cost", "price", "pricing", "budget", "quote", "expensive"],
@@ -103,7 +103,7 @@ export const demoAnswers: DemoAnswer[] = [
       "formula mine",
     ],
     answer:
-      "You do. There's a full IP assignment at Handover, including the reasoning behind every ingredient — not just the formula sheet. Your information is treated as confidential throughout, and an NDA can be signed at any point.",
+      "You do. There's a full IP assignment at Handover, including the reasoning behind every ingredient, not just the formula sheet. Your information is treated as confidential throughout, and an NDA can be signed at any point.",
   },
   {
     keywords: [
@@ -117,7 +117,7 @@ export const demoAnswers: DemoAnswer[] = [
       "formulator",
     ],
     answer:
-      "Formulyn was founded by Romaisa Irfan — \"Rumi\" — a biochemist with postgraduate R&D and formulation expertise, and its Founder and Chief Formulation Scientist. You work directly with Rumi from the first call through to handover.",
+      "Formulyn was founded by Romaisa Irfan, known as \"Rumi\", a biochemist with postgraduate R&D and formulation expertise, and its Founder and Chief Formulation Scientist. You work directly with Rumi from the first call through to handover.",
   },
   {
     keywords: [
@@ -131,12 +131,12 @@ export const demoAnswers: DemoAnswer[] = [
       "scientific background",
     ],
     answer:
-      "Yes — an idea is enough to start, and no scientific background is needed; the reasoning gets explained in plain terms as we go. We work with first-time founders and established brands alike. Bring whatever you have to the call: a concept, a target market, claims you'd like to make, competitors, or just a rough sketch of the product.",
+      "Yes, an idea is enough to start, and no scientific background is needed; the reasoning gets explained in plain terms as we go. We work with first-time founders and established brands alike. Bring whatever you have to the call: a concept, a target market, claims you'd like to make, competitors, or just a rough sketch of the product.",
   },
   {
     keywords: ["manufacture", "manufacturing", "factory", "produce", "moq"],
     answer:
-      "No — and deliberately so. We're formulation-only and manufacturer-agnostic, with no factory to fill and no ingredient stock to move. At the Manufacturing step you get a shortlist of three or four independent manufacturers with MOQ, cost, location and packaging compared. You're never required to use one of them, and we can build to your own manufacturer's capabilities instead.",
+      "No, and deliberately so. We're formulation-only and manufacturer-agnostic, with no factory to fill and no ingredient stock to move. At the Manufacturing step you get a shortlist of three or four independent manufacturers with MOQ, cost, location and packaging compared. You're never required to use one of them, and we can build to your own manufacturer's capabilities instead.",
   },
   {
     keywords: [
@@ -161,12 +161,12 @@ export const demoAnswers: DemoAnswer[] = [
       "legal",
     ],
     answer:
-      "We map the TGA / FDA / EU pathway during Discovery and grade the literature before any claim reaches artwork. The distinction that catches most brands out is “clinically studied” versus “clinically proven” — one describes the ingredient, the other promises an outcome.",
+      "We map the TGA / FDA / EU pathway during Discovery and grade the literature before any claim reaches artwork. The distinction that catches most brands out is “clinically studied” versus “clinically proven”: one describes the ingredient, the other promises an outcome.",
   },
   {
     keywords: ["stability", "shelf life", "shelf", "expiry", "degradation"],
     answer:
-      "We design and specify the stability testing; a third-party lab physically runs it. It's an optional add-on and priced separately from the main engagement — worth raising on the call so it can be scoped alongside everything else.",
+      "We design and specify the stability testing; a third-party lab physically runs it. It's an optional add-on and priced separately from the main engagement, and worth raising on the call so it can be scoped alongside everything else.",
   },
   {
     keywords: [
@@ -177,7 +177,7 @@ export const demoAnswers: DemoAnswer[] = [
       "delivery",
     ],
     answer:
-      "Liposomal delivery is a formulation route we work in, not a category of its own. What matters is whether the data supports the claim: particle size distribution and entrapment efficiency, measured — not an encapsulation claim asserted on the label.",
+      "Liposomal delivery is a formulation route we work in, not a category of its own. What matters is whether the data supports the claim: particle size distribution and entrapment efficiency measured, not an encapsulation claim asserted on the label.",
   },
   {
     keywords: [
@@ -195,12 +195,12 @@ export const demoAnswers: DemoAnswer[] = [
   {
     keywords: ["reformulate", "existing", "improve", "fix", "margin", "cost down"],
     answer:
-      "Reformulation is one of our three core mandates. The usual pattern is a long ingredient list where most actives sit under an effective dose — we rebuild around the ones that earn their place, then prove it with stability data.",
+      "Reformulation is one of our three core mandates. The usual pattern is a long ingredient list where most actives sit under an effective dose. We rebuild around the ones that earn their place, then prove it with stability data.",
   },
   {
     keywords: ["skincare", "serum", "cream", "emulsion", "retinol", "topical"],
     answer:
-      "Skincare and topicals are core categories — emulsions and serums balanced for efficacy, texture and preservation. The hard part is usually holding all three at once alongside a preservative system that survives challenge testing.",
+      "Skincare and topicals are core categories: emulsions and serums balanced for efficacy, texture and preservation. The hard part is usually holding all three at once alongside a preservative system that survives challenge testing.",
   },
   {
     keywords: ["supplement", "capsule", "powder", "tablet", "dose", "dosage"],
@@ -210,7 +210,7 @@ export const demoAnswers: DemoAnswer[] = [
   {
     keywords: ["pet", "dog", "cat", "animal", "palatability"],
     answer:
-      "Pet wellness is an active category — species-appropriate dosing plus palatability that survives real feeding. Getting the dose right is usually easier than getting it eaten.",
+      "Pet wellness is an active category, with species-appropriate dosing plus palatability that survives real feeding. Getting the dose right is usually easier than getting it eaten.",
   },
   {
     keywords: ["where", "location", "based", "australia", "brisbane", "remote"],
@@ -219,7 +219,7 @@ export const demoAnswers: DemoAnswer[] = [
   },
   {
     keywords: ["contact", "call", "book", "talk", "speak", "email", "meeting"],
-    answer: `Start with a 30-minute discovery call — a focused conversation to understand your product and scope what's possible, no pressure and no pitch. You can also email ${site.email}.`,
+    answer: `Start with a 30-minute discovery call, a focused conversation to understand your product and scope what's possible, no pressure and no pitch. You can also email ${site.email}.`,
   },
   {
     keywords: ["nda", "confidential", "secret", "protect"],
@@ -229,4 +229,4 @@ export const demoAnswers: DemoAnswer[] = [
 ];
 
 /** Shown when nothing matches — never invents an answer. */
-export const fallbackAnswer = `I don't have a confident answer to that one. It's a good question for the 30-minute discovery call, where someone from the team can give you a proper response — or email ${site.email}.`;
+export const fallbackAnswer = `I don't have a confident answer to that one. It's a good question for the 30-minute discovery call, where someone from the team can give you a proper response, or email ${site.email}.`;

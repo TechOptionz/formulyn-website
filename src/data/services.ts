@@ -46,7 +46,7 @@ export const mandates: Mandate[] = [
     index: "[04]",
     title: "Custom Project",
     tagline: "Bespoke engagements scoped to your exact brief.",
-    body: "Complex, multi-product briefs spanning formulation, compliance and manufacturer vetting — scoped and priced up front.",
+    body: "Complex, multi-product briefs spanning formulation, compliance and manufacturer vetting, scoped and priced up front.",
   },
 ];
 
@@ -81,8 +81,8 @@ export const serviceDetails: ServiceDetail[] = [
     heading: "Custom nutraceutical & cosmetic formulation development",
     metaTitle: "Custom Nutraceutical & Cosmetic Formulation Development",
     metaDescription:
-      "Custom supplement and skincare formulations built from the ground up — grounded in biochemistry, aligned with Australian regulatory standards, and designed to work.",
-    lead: "Your product idea deserves more than a generic formula off a manufacturer's shelf. We develop custom formulations built from the ground up — grounded in biochemistry, aligned with Australian regulatory standards, and designed to actually work.",
+      "Custom supplement and skincare formulations built from the ground up, grounded in biochemistry, aligned with Australian regulatory standards, and designed to work.",
+    lead: "Your product idea deserves more than a generic formula off a manufacturer's shelf. We develop custom formulations built from the ground up, grounded in biochemistry, aligned with Australian regulatory standards, and designed to actually work.",
     includesHeading: "What the engagement includes",
     includes: [
       {
@@ -91,7 +91,7 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         title: "Excipient & base design",
-        body: "Capsules, tablets, powders, gummies, liquids and topicals — the base engineered for the format.",
+        body: "Capsules, tablets, powders, gummies, liquids and topicals, with the base engineered for the format.",
       },
       {
         title: "Compatibility & stability",
@@ -134,18 +134,18 @@ export const serviceDetails: ServiceDetail[] = [
       },
     ],
     audience:
-      "For founders, brand managers and entrepreneurs developing a custom product — particularly halal or plant-based lines.",
+      "For founders, brand managers and entrepreneurs developing a custom product, particularly halal or plant-based lines.",
     faqHeading: "Questions we're asked before a brief",
     faqs: [
       {
         question: "Do I need a finished concept before we start?",
         answer:
-          "No. Most briefs arrive as an idea and a market rather than a specification, and no scientific background is assumed — every decision is explained in plain terms. Bring the concept, the competitors and the claims you want to make, and the discovery call turns them into a scope.",
+          "No. Most briefs arrive as an idea and a market rather than a specification, and no scientific background is assumed; every decision is explained in plain terms. Bring the concept, the competitors and the claims you want to make, and the discovery call turns them into a scope.",
       },
       {
         question: "Do you manufacture the product as well?",
         answer:
-          "No, and that is deliberate. We sit upstream of manufacturing and take nothing from it, so an active is chosen because the evidence supports it — not because a particular plant already stocks it.",
+          "No, and that is deliberate. We sit upstream of manufacturing and take nothing from it, so an active is chosen because the evidence supports it, not because a particular plant already stocks it.",
       },
       {
         question: "Who owns the formula at the end?",
@@ -155,7 +155,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         question: "Can you work on a product that already exists?",
         answer:
-          "Yes. Reformulation and optimisation run through the same formulation step — whether the goal is a cleaner label, a better-absorbed form of an active, or a product that has stopped performing against its competitors.",
+          "Yes. Reformulation and optimisation run through the same formulation step, whether the goal is a cleaner label, a better-absorbed form of an active, or a product that has stopped performing against its competitors.",
       },
       {
         question: "Is stability testing included?",
@@ -180,19 +180,19 @@ export const serviceDetails: ServiceDetail[] = [
     includesHeading: "Markets we cover",
     includes: [
       {
-        title: "Australia — TGA",
+        title: "Australia (TGA)",
         body: "Therapeutic Goods Administration listing and ARTG pathways.",
       },
       {
-        title: "European Union — CPNP",
+        title: "European Union (CPNP)",
         body: "Cosmetic Products Notification Portal submissions.",
       },
       {
-        title: "United Kingdom — SCPN",
+        title: "United Kingdom (SCPN)",
         body: "Submit Cosmetic Product Notification for the post-Brexit UK market.",
       },
       {
-        title: "GCC — SFDA",
+        title: "GCC (SFDA)",
         body: "Saudi Arabia, UAE, Kuwait, Bahrain, Qatar and Oman.",
       },
       {
@@ -239,7 +239,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         question: "Can you tell me which claims I am allowed to make?",
         answer:
-          "Yes. Claims are graded against the published literature and against each regulator's permitted indications, so you know which survive scrutiny and which need rewording — before the label goes to print rather than after.",
+          "Yes. Claims are graded against the published literature and against each regulator's permitted indications, so you know which survive scrutiny and which need rewording, before the label goes to print rather than after.",
       },
       {
         question: "What happens if an ingredient is not permitted in my target market?",
@@ -270,7 +270,7 @@ export const serviceDetails: ServiceDetail[] = [
     metaTitle: "Supplement & Cosmetic Manufacturer Sourcing and GMP Clearance",
     metaDescription:
       "Independent manufacturer shortlisting, TGA GMP clearance verification, capability matching and quote review for supplement and cosmetic brands.",
-    lead: "Finding the right manufacturer is one of the hardest parts of bringing a product to market — and one of the most consequential. We take the guesswork out of it by vetting partners for TGA GMP clearance, capability fit and minimum-order viability.",
+    lead: "Finding the right manufacturer is one of the hardest parts of bringing a product to market, and one of the most consequential. We take the guesswork out of it by vetting partners for TGA GMP clearance, capability fit and minimum-order viability.",
     includesHeading: "What the engagement includes",
     includes: [
       {
@@ -328,7 +328,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         question: "Do you take a commission from the manufacturers you recommend?",
         answer:
-          "No, and that is the reason the shortlist is worth reading. We take nothing from manufacturing, so a plant appears on it because it fits the brief — never because it pays to be there.",
+          "No, and that is the reason the shortlist is worth reading. We take nothing from manufacturing, so a plant appears on it because it fits the brief, never because it pays to be there.",
       },
       {
         question: "Am I obliged to use one of your manufacturers?",
@@ -353,7 +353,7 @@ export const serviceDetails: ServiceDetail[] = [
       {
         question: "What if my current manufacturer is not working out?",
         answer:
-          "The incumbent is reviewed independently and, where it is warranted, we identify a TGA-compliant alternative — including at short notice when supply is at risk.",
+          "The incumbent is reviewed independently and, where it is warranted, we identify a TGA-compliant alternative, including at short notice when supply is at risk.",
       },
     ],
   },
@@ -386,21 +386,21 @@ export const serviceNavItems: NavChild[] = [
     label: "Formulation Development",
     href: "/services/formulation-development",
     description:
-      "Evidence-led formulas built from the ground up — ingredient rationale, dosage modelling and stability work, delivered as a manufacturer-ready dossier.",
+      "Evidence-led formulas built from the ground up: ingredient rationale, dosage modelling and stability work, delivered as a manufacturer-ready dossier.",
     icon: "flask",
   },
   {
     label: "Regulatory Compliance & Market Registration",
     href: "/services/regulatory-compliance",
     description:
-      "TGA and ARTG pathways through EU CPNP, UK SCPN and GCC — ingredient screening, label and claim review, and dossiers lodged in each market.",
+      "TGA and ARTG pathways through EU CPNP, UK SCPN and GCC: ingredient screening, label and claim review, and dossiers lodged in each market.",
     icon: "dossier",
   },
   {
     label: "Manufacturer Sourcing & GMP Clearance",
     href: "/services/manufacturer-sourcing",
     description:
-      "Independent shortlisting of manufacturers, verified for TGA GMP clearance, capability and minimum-order viability — with no manufacturing conflicts.",
+      "Independent shortlisting of manufacturers, verified for TGA GMP clearance, capability and minimum-order viability, with no manufacturing conflicts.",
     icon: "facility",
   },
 ];

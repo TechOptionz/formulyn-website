@@ -7,10 +7,10 @@ export const aboutHero = {
 
 export const aboutBody = {
   heading: "We start where the catalogue stops",
-  lead: "Formulyn is a boutique nutraceutical and cosmetic formulation consultancy, crafting evidence-led supplement, skincare, and wellness formulations — from raw molecular brief to regulatory-ready product, without manufacturing conflicts.",
+  lead: "Formulyn is a boutique nutraceutical and cosmetic formulation consultancy, crafting evidence-led supplement, skincare, and wellness formulations, from raw molecular brief to regulatory-ready product, without manufacturing conflicts.",
   paragraphs: [
     "Formulyn was founded on a specific frustration: product development is usually constrained by what contract manufacturers already produce, rather than by what the evidence supports.",
-    "So we sit upstream of manufacturing. Formulyn is an independent R&D function — loyal to the evidence, the regulator, and your roadmap, and to nothing else. Not to a manufacturer's quota, not to an ingredient supplier's margin.",
+    "So we sit upstream of manufacturing. Formulyn is an independent R&D function, loyal to the evidence, the regulator, and your roadmap, and to nothing else. Not to a manufacturer's quota, not to an ingredient supplier's margin.",
     "What you receive is a complete, defensible formula and the regulatory dossier to distribute it. The workings come with it.",
   ],
 } as const;
@@ -72,7 +72,7 @@ export const leadershipSection = {
   eyebrow: "Who you work with",
   heading: "Leadership rooted in science. Driven by purpose",
   intro:
-    "The people behind the practice — the science it stands on, and the way it is run.",
+    "The people behind the practice: the science it stands on, and the way it is run.",
 } as const;
 
 /** One person in the leadership row. */
@@ -110,7 +110,7 @@ export const founder = {
       which is what ties this site's founder to the same real person. */
   linkedin: "https://www.linkedin.com/in/romaisa-irfan-b7336519a/",
   quote:
-    "We treat each formula as a small thesis — defended by literature, stress-tested by trial, and shipped with its workings.",
+    "We treat each formula as a small thesis, defended by literature and delivered with the evidence behind it.",
 } as const satisfies Leader;
 
 /**
@@ -129,7 +129,7 @@ export const coLeader = {
     src: "/leader-abubakar-latif-2026.webp",
     alt: "Muhammad Abubakar Latif, Co-Founder and Chief Operating Officer at Formulyn",
   },
-  bio: "Runs the operational and financial side of the practice, from client engagement through to project delivery — backed by years of frontline experience working directly with people and navigating complex, high-stakes systems.",
+  bio: "Runs the operational and financial side of the practice, from client engagement through to project delivery, backed by years of frontline experience working directly with people and navigating complex, high-stakes systems.",
   /* Ordered to set parallel with the founder's list above: the qualification
      first, then the discipline, then the dot-separated remit last. */
   credentials: [

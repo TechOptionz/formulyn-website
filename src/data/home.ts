@@ -1,7 +1,7 @@
 /** Content for the home page. */
 
 export const hero = {
-  eyebrow: "Methodology · 4 Phases · 8–16 Weeks to Dossier",
+  eyebrow: "Methodology · 4 Phases · 8 to 16 Weeks to Dossier",
   /** Rendered as two lines, with a gold full stop after the last word. */
   headingLines: ["From brief", "to batch"],
   body: "A fixed-scope, fixed-price protocol. Each phase has one tangible deliverable and a clear go / no-go gate, so you are never committed beyond the next milestone.",
@@ -43,7 +43,7 @@ export const intro = {
   eyebrow: "What we do",
   heading: "Someone has to care about your product as much as you do",
   lead: "Formulyn is a boutique nutraceutical and cosmetic formulation consultancy, crafting evidence-led supplement, skincare, and wellness formulations, from raw molecular brief to regulatory-ready product, without manufacturing conflicts.",
-  body: "You get the same people from the first call to the final dossier. We don't just hand you a formula — we hand you the reasoning behind it, so you own it like it's your own intellectual property, because it is.",
+  body: "You get the same people from the first call to the final dossier. We don't just hand you a formula. We hand you the reasoning behind it, so you own it like it's your own intellectual property, because it is.",
   tags: ["Evidence-led", "Regulatory-ready", "No manufacturing conflicts"],
 } as const;
 
@@ -52,7 +52,7 @@ export const manifesto = {
   eyebrow: "Why founders come to us",
   lead: "Somewhere between your idea and a real product, most consultancies hand you a catalogue and call it formulation. We don't.",
   highlight:
-    "We start from what's in your head — not what's already on a shelf — and build the evidence to back it.",
+    "We start from what's in your head, not what's already on a shelf, and build the evidence to back it.",
 } as const;
 
 export const situationsSection = {
@@ -77,7 +77,7 @@ export const situations: Situation[] = [
     problem:
       "You know exactly what you want the product to do. What's missing is the technical vocabulary to hold your ground while it gets built.",
     response:
-      "We arm you with a formula and a dossier you understand inside out — so you walk into every room as the expert on your own product.",
+      "We arm you with a formula and a dossier you understand inside out, so you walk into every room as the expert on your own product.",
   },
   {
     index: "[02]",
@@ -98,7 +98,7 @@ export const situations: Situation[] = [
 ];
 
 export const practiceSection = {
-  eyebrow: "Practice · 01–03",
+  eyebrow: "Practice · 01 to 03",
   heading: "Molecular rigor",
   intro:
     "Three core mandates, each scoped, costed, and delivered with the same scientific discipline regardless of brand stage.",
@@ -120,7 +120,7 @@ export const mandates: Mandate[] = [
   {
     index: "[01]",
     title: "Custom Formulation",
-    body: "From a single-line brief to a fully validated formula — ingredient selection, dose optimisation, and a stability protocol built in from the first draft, not bolted on at the end.",
+    body: "From a single-line brief to a fully validated formula: ingredient selection, dose optimisation, and a stability protocol built in from the first draft, not bolted on at the end.",
   },
   {
     index: "[02]",
@@ -138,7 +138,7 @@ export const caseStudiesSection = {
   eyebrow: "Case studies · Selected work",
   heading: "Briefs we've taken to batch",
   intro:
-    "Client names withheld under NDA. These case studies reflect the depth of work included once a project begins — book a discovery call to scope yours.",
+    "Client names withheld under NDA. These case studies reflect the depth of work included once a project begins. Book a discovery call to scope yours.",
 } as const;
 
 export type CaseStudy = {
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
   {
     category: "Skincare · EU market",
     title: "EU-market entry for a manuka-based skincare ointment",
-    body: "A therapeutic skincare product needed full EU compliance to launch — safety documentation, ingredient compliance, and regulatory sign-off, not just a formula.",
+    body: "A therapeutic skincare product needed full EU compliance to launch: safety documentation, ingredient compliance, and regulatory sign-off, not just a formula.",
     image: {
       src: "/case-skincare-manuka.webp",
       alt: "An open amber glass jar of golden manuka balm on a dark laboratory bench, with manuka blossom, honeycomb, pipettes and a microscope alongside",
@@ -176,7 +176,7 @@ export const caseStudies: CaseStudy[] = [
   {
     category: "Supplements · Paediatric",
     title: "A five-active chewable vitamin built for young children",
-    body: "Gluten- and lactose-free, five variable actives, and a delivery format kids will actually take — built for reliable dosing on a commercial tablet press.",
+    body: "Gluten-free and lactose-free, five variable actives, and a delivery format kids will actually take, built for reliable dosing on a commercial tablet press.",
     image: {
       src: "/case-paediatric-chewable.webp",
       alt: "Pastel chewable vitamin tablets gathered on a dark slate surface under warm side light",
@@ -190,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Functional food & beverage",
     title:
       "A frozen-format collagen product, engineered to sidestep therapeutic classification",
-    body: "The brief called for a popsicle-format marine collagen stick — formulated deliberately as a food product, not a therapeutic good, to simplify the regulatory pathway.",
+    body: "The brief called for a popsicle-format marine collagen stick, formulated deliberately as a food product, not a therapeutic good, to simplify the regulatory pathway.",
     image: {
       src: "/case-collagen-frozen.jpg",
       alt: "A frozen collagen popsicle standing on a dark slate surface",
@@ -203,7 +203,7 @@ export const caseStudies: CaseStudy[] = [
   {
     category: "Supplements · TGA listed",
     title: "A magnesium gummy built for ARTG listing",
-    body: "A returning client's second product with Formulyn — reformulated and structured specifically for TGA ARTG listing requirements.",
+    body: "A returning client's second product with Formulyn, reformulated and structured specifically for TGA ARTG listing requirements.",
     image: {
       src: "/case-magnesium-gummy.webp",
       alt: "Translucent amber gummies in clear glass dishes on dark slate, backlit so the light passes through them",

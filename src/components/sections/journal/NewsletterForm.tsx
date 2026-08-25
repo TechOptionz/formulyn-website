@@ -63,7 +63,7 @@ export function NewsletterForm() {
         {status === "sent"
           ? "You're on the list."
           : status === "error"
-            ? "That didn't go through — try again shortly."
+            ? "That didn't go through. Try again shortly."
             : ""}
       </p>
     </form>

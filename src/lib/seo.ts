@@ -13,13 +13,13 @@ const OG_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: `${site.name} — ${site.tagline}`,
+  alt: `${site.name}: ${site.tagline}`,
 };
 
 type PageSeo = {
   /** Route path, leading slash. The homepage is "/". */
   path: string;
-  /** Runs through the `%s — Formulyn` template unless `absoluteTitle`. */
+  /** Runs through the `%s | Formulyn` template unless `absoluteTitle`. */
   title: string;
   description: string;
   /**
@@ -53,7 +53,7 @@ export function pageMetadata({
 
   // The layout's title template applies to <title> but not to the OG or
   // Twitter cards, so the suffixed form is spelled out for them here.
-  const socialTitle = absoluteTitle ? title : `${title} — ${site.name}`;
+  const socialTitle = absoluteTitle ? title : `${title} | ${site.name}`;
 
   return {
     title: absoluteTitle ? { absolute: title } : title,

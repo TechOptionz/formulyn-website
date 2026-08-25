@@ -32,7 +32,7 @@ export const industries: Industry[] = [
     index: "01",
     slug: "supplements",
     title: "Supplements",
-    body: "Capsules, powders, and sachets dosed to the level the evidence supports — formulated across demographic segments rather than to a single generic adult profile.",
+    body: "Capsules, powders, and sachets dosed to the level the evidence supports, formulated across demographic segments rather than to a single generic adult profile.",
     tags: [
       "Vitamins & minerals",
       "Capsules",
@@ -88,7 +88,7 @@ export const industries: Industry[] = [
     index: "04",
     slug: "pet-wellness",
     title: "Pet Wellness",
-    body: "Species-appropriate dosing and palatability that survives real feeding — companion formulas are not scaled-down human formulas, and we do not treat them as such.",
+    body: "Species-appropriate dosing and palatability that survives real feeding. Companion formulas are not scaled-down human formulas, and we do not treat them as such.",
     tags: [
       "Joint",
       "Digestive",
@@ -125,7 +125,7 @@ export const industries: Industry[] = [
     index: "06",
     slug: "topicals",
     title: "Topicals",
-    body: "Penetration, stability, and microbiological safety, all at once — balms, gels, and creams where the delivery system decides whether the active ever reaches its target.",
+    body: "Penetration, stability, and microbiological safety, all at once, in balms, gels, and creams where the delivery system decides whether the active ever reaches its target.",
     tags: [
       "Balms",
       "Gels",
@@ -143,7 +143,7 @@ export const industries: Industry[] = [
     index: "07",
     slug: "cosmeceuticals",
     title: "Cosmeceuticals",
-    body: "Actives positioned between skincare and pharma, backed by evidence strong enough to defend — and dosed to the concentration the studies used, not the one that markets well.",
+    body: "Actives positioned between skincare and pharma, backed by evidence strong enough to defend, and dosed to the concentration the studies used, not the one that markets well.",
     tags: [
       "Retinoids",
       "Peptides",

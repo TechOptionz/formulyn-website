@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { Reveal } from "@/components/ui/Reveal";
 import { Stop } from "@/components/ui/Stop";
-import { Instagram, LinkedIn } from "@/components/ui/icons";
+import { Facebook, Instagram, LinkedIn } from "@/components/ui/icons";
 import styles from "./AboutSection.module.css";
 
 /** The origin narrative, with the practice ledger set alongside it. */
@@ -31,7 +31,7 @@ export function AboutSection() {
               </p>
             ))}
 
-            {/* Company social links: LinkedIn & Instagram */}
+            {/* Company social links: LinkedIn, Instagram & Facebook */}
             <div className={styles.socialGroup}>
               <a
                 href={site.linkedin}
@@ -50,6 +50,15 @@ export function AboutSection() {
               >
                 <Instagram className={styles.socialMark} />
                 {site.name} on Instagram
+              </a>
+              <a
+                href={site.facebook}
+                className={styles.social}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Facebook className={styles.socialMark} />
+                {site.name} on Facebook
               </a>
             </div>
           </Reveal>
