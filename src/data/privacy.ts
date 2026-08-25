@@ -2,7 +2,7 @@
 
 export const privacyHero = {
   eyebrow: "Company policies",
-  heading: "Formulyn — Company Policies",
+  heading: "Formulyn Company Policies",
   body: "A few things we like to be upfront about with everyone we work with.",
 } as const;
 
@@ -30,7 +30,7 @@ export const policyClauses: PolicyClause[] = [
     index: "01",
     title: "How We Work",
     body: [
-      "Every project moves through three stages — Formulation, Regulatory & Compliance, and Manufacturer Sourcing. We keep you in the loop at each stage, and nothing moves forward without your sign-off.",
+      "Every project moves through three stages: Formulation, Regulatory & Compliance, and Manufacturer Sourcing. We keep you in the loop at each stage, and nothing moves forward without your sign-off.",
     ],
   },
   {
@@ -38,14 +38,14 @@ export const policyClauses: PolicyClause[] = [
     title: "Confidentiality & NDAs",
     body: ["Whatever you share with us about your product or idea stays between us."],
     points: [
-      "Happy to sign an NDA whenever you'd like — before, during, or after our first call.",
+      "Happy to sign an NDA whenever you'd like: before, during, or after our first call.",
       "We don't pass your information on to anyone else, including manufacturers, without your okay.",
     ],
   },
   {
     index: "03",
     title: "Intellectual Property",
-    body: ["It's your product, your idea, and your IP — always."],
+    body: ["It's your product, your idea, and your IP. Always."],
     points: [
       "Once we hand a project over, the formula, the research behind it, and all the documentation are fully yours.",
       "We don't hold onto any rights to reuse your formula or brand for anything else.",
@@ -55,7 +55,7 @@ export const policyClauses: PolicyClause[] = [
     index: "04",
     title: "Manufacturing Independence",
     body: [
-      "We don't manufacture, and we don't get anything from pointing you toward a manufacturer. Whoever you choose to produce with — including someone we didn't recommend — is entirely up to you.",
+      "We don't manufacture, and we don't get anything from pointing you toward a manufacturer. Whoever you choose to produce with, including someone we didn't recommend, is entirely up to you.",
     ],
   },
   {
@@ -69,14 +69,14 @@ export const policyClauses: PolicyClause[] = [
     index: "06",
     title: "Regulatory Guidance",
     body: [
-      "We stay on top of the frameworks that matter for your product (TGA, FDA, CPNP, and others), and we'll guide you through them. That said, our guidance supports your journey — it isn't a substitute for your own independent legal sign-off where that's needed.",
+      "We stay on top of the frameworks that matter for your product (TGA, FDA, CPNP, and others), and we'll guide you through them. That said, our guidance supports your journey. It isn't a substitute for your own independent legal sign-off where that's needed.",
     ],
   },
   {
     index: "07",
     title: "How We Communicate",
     body: [
-      "You'll be working directly with Rumi, start to finish — not passed between account managers. We check in at every major milestone, and you can always reach out with questions in between.",
+      "You'll be working directly with Rumi, start to finish, and not passed between account managers. We check in at every major milestone, and you can always reach out with questions in between.",
     ],
   },
   {

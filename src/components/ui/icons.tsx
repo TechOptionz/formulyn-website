@@ -186,3 +186,25 @@ export function Instagram(props: IconProps) {
     </svg>
   );
 }
+
+/**
+ * Filled for the same reason as {@link LinkedIn} — the "f" is a logotype,
+ * and stroking it closes up the crossbar at the 16px this renders at. Sized
+ * to LinkedIn's cap height rather than the full 24 box so the three marks
+ * sit on one optical line.
+ */
+export function Facebook(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <path d="M16.538 13.219l.542-3.529h-3.386v-2.29c0-.966.473-1.907 1.99-1.907h1.539V2.488S15.823 2.25 14.489 2.25c-2.789 0-4.611 1.69-4.611 4.75v2.69h-3.1v3.529h3.1v8.531h3.815v-8.531z" />
+    </svg>
+  );
+}

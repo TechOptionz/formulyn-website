@@ -6,7 +6,7 @@ import {
 } from "@/data/site";
 import { SiteLink } from "@/components/ui/SiteLink";
 import { Logo } from "@/components/ui/Logo";
-import { Instagram, LinkedIn } from "@/components/ui/icons";
+import { Facebook, Instagram, LinkedIn } from "@/components/ui/icons";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -71,6 +71,15 @@ export function Footer() {
             >
               <Instagram className={styles.socialMark} />
               {site.name} on Instagram
+            </a>
+            <a
+              href={site.facebook}
+              className={styles.social}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Facebook className={styles.socialMark} />
+              {site.name} on Facebook
             </a>
           </div>
         </div>

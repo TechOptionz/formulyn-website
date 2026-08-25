@@ -1,7 +1,7 @@
 /** Content for the /process page. */
 
 export const processHero = {
-  eyebrow: "Methodology · Step 01–05",
+  eyebrow: "Methodology · Steps 01 to 05",
   heading: "The process",
   body: "A five-step protocol that keeps your formulation, IP ownership, and choice of manufacturer entirely independent.",
 } as const;
@@ -11,11 +11,11 @@ export const processHero = {
  * each segment and `color` its token, matching the step durations below.
  */
 export const timeline = [
-  { flex: 2, color: "var(--c-gold)", label: "W 1–2" },
-  { flex: 4, color: "var(--c-gold-mid)", label: "W 3–6" },
-  { flex: 4, color: "var(--c-gold-pale)", label: "W 7–10" },
-  { flex: 4, color: "var(--c-bronze)", label: "W 11–14" },
-  { flex: 2, color: "var(--c-ink-solid)", label: "W 15–16" },
+  { flex: 2, color: "var(--c-gold)", label: "1 to 2" },
+  { flex: 4, color: "var(--c-gold-mid)", label: "3 to 6" },
+  { flex: 4, color: "var(--c-gold-pale)", label: "7 to 10" },
+  { flex: 4, color: "var(--c-bronze)", label: "11 to 14" },
+  { flex: 2, color: "var(--c-ink-solid)", label: "15 to 16" },
 ] as const;
 
 export type Phase = {
@@ -35,7 +35,7 @@ export const phases: Phase[] = [
   {
     id: "discovery",
     number: "01",
-    weeks: "Week 1–2",
+    weeks: "Week 1 to 2",
     title: "Discovery call",
     body: "A structured intake to define your product vision, target market, claims, and regulatory scope before any formulation work begins.",
     includes: [
@@ -49,9 +49,9 @@ export const phases: Phase[] = [
   {
     id: "formulation",
     number: "02",
-    weeks: "Week 3–6",
+    weeks: "Week 3 to 6",
     title: "Formulation",
-    body: "Evidence-led formula development — from ingredient selection to a fully validated formulation matrix, backed by published research.",
+    body: "Evidence-led formula development, from ingredient selection to a fully validated formulation matrix, backed by published research.",
     includes: [
       "Literature review (PubMed / Cochrane)",
       "Ingredient long-list & evidence grading",
@@ -64,7 +64,7 @@ export const phases: Phase[] = [
   {
     id: "regulatory",
     number: "03",
-    weeks: "Week 7–10",
+    weeks: "Week 7 to 10",
     title: "Regulatory & compliance",
     body: "Translating your formula into what you can legally claim and sell, mapped to your target market's regulatory framework.",
     includes: [
@@ -78,11 +78,11 @@ export const phases: Phase[] = [
   {
     id: "manufacturing",
     number: "04",
-    weeks: "Week 11–14",
+    weeks: "Week 11 to 14",
     title: "Manufacturing",
-    body: "Independent manufacturer matching — you choose who brings your formula to life, with full visibility on cost and capability.",
+    body: "Independent manufacturer matching. You choose who brings your formula to life, with full visibility on cost and capability.",
     includes: [
-      "3–4 manufacturer options shortlisted",
+      "Three to four manufacturer options shortlisted",
       "MOQ, cost & location comparison",
       "Packaging & format compatibility check",
       "Manufacturer introductions on your terms",
@@ -92,9 +92,9 @@ export const phases: Phase[] = [
   {
     id: "handover",
     number: "05",
-    weeks: "Week 15–16",
+    weeks: "Week 15 to 16",
     title: "Handover",
-    body: "Full sign-off and transfer — the formula, the evidence, and the IP are yours outright.",
+    body: "Full sign-off and transfer: the formula, the evidence, and the IP are yours outright.",
     includes: [
       "Master formula & batch records",
       "Full IP assignment",
@@ -106,4 +106,4 @@ export const phases: Phase[] = [
 
 /** Footnote under the step grid. */
 export const processNote =
-  "Optional services such as stability testing are available separately, priced on scope — they are not included in the core process above.";
+  "Optional services such as stability testing are available separately, priced on scope. They are not included in the core process above.";
