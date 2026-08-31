@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Jost } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatWidget } from "@/components/chat/ChatWidget";
@@ -71,6 +72,8 @@ export default function RootLayout({
           <Footer />
         </RouteRestartProvider>
         <ChatWidget />
+        {/* Vercel Web Analytics. Cookieless, so it adds no consent surface. */}
+        <Analytics />
       </body>
     </html>
   );
