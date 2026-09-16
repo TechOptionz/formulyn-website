@@ -80,7 +80,7 @@ export const siteLd = {
         "Cosmetic formulation",
         "Pharmaceutical formulation",
       ],
-      sameAs: [founder.linkedin],
+      sameAs: [founder.linkedin, founder.researchGate],
     },
     {
       /* The other half of the practice. Everything here is stated on his own

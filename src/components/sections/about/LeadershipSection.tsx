@@ -3,7 +3,7 @@ import type { Leader } from "@/data/about";
 import { leaders, leadershipSection } from "@/data/about";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { LinkedIn } from "@/components/ui/icons";
+import { LinkedIn, ResearchGate } from "@/components/ui/icons";
 import styles from "./LeadershipSection.module.css";
 
 /**
@@ -57,15 +57,32 @@ function LeaderProfile({ leader, index }: { leader: Leader; index: number }) {
           {/* Labelled by the person, not by the network — a link reading
               "LinkedIn" tells a screen-reader user nothing about where it
               goes when several sit on one page. */}
-          <a
-            href={leader.linkedin}
-            className={styles.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedIn className={styles.linkedinMark} />
-            {leader.name} on LinkedIn
-          </a>
+          <div className={styles.profiles}>
+            <a
+              href={leader.linkedin}
+              className={styles.profileLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedIn className={styles.profileMark} />
+              {leader.name} on LinkedIn
+            </a>
+
+            {/* Only the people with published work carry this one. */}
+            {leader.researchGate && (
+              <a
+                href={leader.researchGate}
+                className={styles.profileLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ResearchGate
+                  className={`${styles.profileMark} ${styles.researchMark}`}
+                />
+                Romaisa on ResearchGate
+              </a>
+            )}
+          </div>
         </div>
 
         <div className={styles.credit}>
