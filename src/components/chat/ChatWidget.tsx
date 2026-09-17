@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { chatUi, greeting, leadFlow, suggestions } from "@/data/chat";
 import { site } from "@/data/site";
 import { Close } from "@/components/ui/icons";
+import { Turnstile, TURNSTILE_SITE_KEY } from "@/components/ui/Turnstile";
 import { isValidEmail } from "@/lib/chat/validate";
 import type { ChatMessage } from "@/lib/chat/types";
 import styles from "./ChatWidget.module.css";
@@ -48,6 +49,7 @@ export function ChatWidget() {
   const [leadStep, setLeadStep] = useState<LeadStep>(null);
   const [lead, setLead] = useState({ name: "", email: "", brief: "" });
   const [leadDone, setLeadDone] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState("");
 
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -133,6 +135,7 @@ export function ChatWidget() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...finished,
+            turnstileToken: captchaToken,
             messages: entries
               .filter((entry) => !entry.error)
               .map(({ role, content }) => ({ role, content })),
@@ -146,9 +149,11 @@ export function ChatWidget() {
       } finally {
         setBusy(false);
         setLeadStep(null);
+        // The widget unmounts with the lead flow and the token is spent.
+        setCaptchaToken("");
       }
     },
-    [entries, say],
+    [captchaToken, entries, say],
   );
 
   /** Route the composer's contents based on which step we're in. */
@@ -157,6 +162,14 @@ export function ChatWidget() {
       event.preventDefault();
       const value = draft.trim();
       if (!value || busy) return;
+
+      // The widget runs from the name step on, so this is normally done by
+      // now; if it isn't, keep the brief in the composer rather than lose it.
+      if (leadStep === "brief" && TURNSTILE_SITE_KEY && !captchaToken) {
+        say(leadFlow.captcha);
+        return;
+      }
+
       setDraft("");
       setEntries((prev) => [...prev, { role: "user", content: value }]);
 
@@ -189,7 +202,7 @@ export function ChatWidget() {
       setEntries((prev) => prev.slice(0, -1));
       void ask(value);
     },
-    [ask, busy, draft, lead, leadStep, say, submitLead],
+    [ask, busy, captchaToken, draft, lead, leadStep, say, submitLead],
   );
 
   const startLead = useCallback(() => {
@@ -277,6 +290,17 @@ export function ChatWidget() {
               </div>
             ) : null}
           </div>
+
+          {leadStep ? (
+            <Turnstile
+              onToken={setCaptchaToken}
+              action="chat-lead"
+              size="flexible"
+              appearance="interaction-only"
+              theme="dark"
+              className={styles.captcha}
+            />
+          ) : null}
 
           <form className={styles.composer} onSubmit={handleSubmit}>
             <input

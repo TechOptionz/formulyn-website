@@ -399,6 +399,13 @@
   text-wrap: pretty;
 }
 
+/* ---- Captcha (Cloudflare Turnstile) ---------------------------------- */
+
+.captcha {
+  width: 100%;
+  max-width: 400px;
+}
+
 /* ---- Submit --------------------------------------------------------- */
 
 .submit {

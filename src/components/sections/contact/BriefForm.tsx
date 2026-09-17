@@ -1,8 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { briefForm } from "@/data/contact";
 import { site } from "@/data/site";
+import {
+  Turnstile,
+  TURNSTILE_SITE_KEY,
+  type TurnstileHandle,
+} from "@/components/ui/Turnstile";
 import { CategorySelect } from "./CategorySelect";
 import styles from "./ContactSection.module.css";
 
@@ -20,6 +25,8 @@ export function BriefForm() {
   const [error, setError] = useState("");
   /** Bumped alongside form.reset() to clear the category picker's state. */
   const [resetToken, setResetToken] = useState(0);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const captchaRef = useRef<TurnstileHandle>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,6 +40,12 @@ export function BriefForm() {
 
     if (!data.get(briefForm.consent.name)) {
       setError("Please confirm the follow-up consent so we can reply.");
+      setStatus("error");
+      return;
+    }
+
+    if (TURNSTILE_SITE_KEY && !captchaToken) {
+      setError("Please complete the security check.");
       setStatus("error");
       return;
     }
@@ -51,6 +64,7 @@ export function BriefForm() {
           company,
           category,
           source: "contact-form",
+          turnstileToken: captchaToken,
         }),
       });
 
@@ -69,6 +83,9 @@ export function BriefForm() {
         caught instanceof Error ? caught.message : "Could not send that through.",
       );
       setStatus("error");
+    } finally {
+      // A token is single-use, so every attempt needs a fresh one.
+      captchaRef.current?.reset();
     }
   }
 
@@ -155,6 +172,14 @@ export function BriefForm() {
         />
         <span className={styles.consentText}>{briefForm.consent.label}</span>
       </label>
+
+      <Turnstile
+        ref={captchaRef}
+        onToken={setCaptchaToken}
+        action="contact-form"
+        size="flexible"
+        className={styles.captcha}
+      />
 
       <button type="submit" className={styles.submit} disabled={disabled}>
         {status === "sending" ? "Sending…" : `${briefForm.submitLabel} →`}
