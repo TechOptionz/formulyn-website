@@ -141,7 +141,17 @@
   display: block;
 }
 
-.linkedin {
+/* Stacked, and on a tighter rhythm than the column's own 18px gap so the two
+   read as one block under the portrait rather than as two loose rows. */
+.profiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.profileLink {
   /* Inline-block, not flex: a name long enough to wrap keeps the mark on the
      first line instead of parking it beside a two-line label. */
   display: inline-block;
@@ -159,18 +169,18 @@
   transition: color 0.25s;
 }
 
-.linkedin:hover {
+.profileLink:hover {
   color: var(--c-bronze);
 }
 
 /* Touch target grown past the text box. Absolutely positioned, so it is not
    laid out as a flex item of the link and the mark/label gap is untouched. */
 @media (max-width: 860px), (pointer: coarse) {
-  .linkedin {
+  .profileLink {
     position: relative;
   }
 
-  .linkedin::after {
+  .profileLink::after {
     content: "";
     position: absolute;
     left: 0;
@@ -182,10 +192,20 @@
   }
 }
 
-.linkedinMark {
+.profileMark {
   color: var(--c-bronze);
   vertical-align: -3px;
   margin-right: 8px;
+}
+
+/* The RG logotype fills its whole 24 box where LinkedIn's "in" sits inside
+   one, so it is set smaller than that mark and seated on its own baseline —
+   at a matched box it would tower over the label beside it. */
+.researchMark {
+  width: 15px;
+  height: 15px;
+  vertical-align: -0.5px;
+  margin-right: 7px;
 }
 
 /* ---- The credit ------------------------------------------------------ */

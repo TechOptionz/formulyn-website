@@ -83,6 +83,8 @@ export type Leader = {
   bio: string;
   credentials: readonly string[];
   linkedin: string;
+  /** ResearchGate profile, for the people who have published work there. */
+  researchGate?: string;
   quote: string;
 };
 
@@ -106,9 +108,12 @@ export const founder = {
     "Masters-level formulation R&D",
     "Nutraceutical · Cosmetic · Pharmaceutical",
   ],
-  /** Also emitted as `sameAs` on the founder's Person node in the site JSON-LD,
-      which is what ties this site's founder to the same real person. */
+  /** Both profiles are also emitted as `sameAs` on the founder's Person node
+      in the site JSON-LD, which is what ties this site's founder to the same
+      real person — and the ResearchGate one stands behind the publication
+      claim the credentials above make. */
   linkedin: "https://www.linkedin.com/in/romaisa-irfan-b7336519a/",
+  researchGate: "https://www.researchgate.net/profile/Romaisa-Irfan-5",
   quote:
     "We treat each formula as a small thesis, defended by literature and delivered with the evidence behind it.",
 } as const satisfies Leader;

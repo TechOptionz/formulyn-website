@@ -7,6 +7,7 @@ import { Close } from "@/components/ui/icons";
 import { Turnstile, TURNSTILE_SITE_KEY } from "@/components/ui/Turnstile";
 import { isValidEmail } from "@/lib/chat/validate";
 import type { ChatMessage } from "@/lib/chat/types";
+import { Markdown } from "./Markdown";
 import styles from "./ChatWidget.module.css";
 
 /**
@@ -251,7 +252,11 @@ export function ChatWidget() {
                       : styles.assistant,
                 ].join(" ")}
               >
-                {entry.content}
+                {entry.role === "assistant" ? (
+                  <Markdown text={entry.content} />
+                ) : (
+                  entry.content
+                )}
               </div>
             ))}
 
