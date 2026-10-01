@@ -51,6 +51,8 @@ export const leadFlow = {
   email: "Thanks. What's the best email to reach you on?",
   brief: "And in a sentence, what are you trying to make?",
   invalidEmail: "That doesn't look like an email address. Mind checking it?",
+  captcha:
+    "One moment, just finishing a quick security check. Press send again in a second.",
   success:
     "Got it, thank you. We'll be in touch within one business day. If you'd rather book a time directly, the discovery call link is on the contact page.",
   failure: `Something went wrong sending that through. Email ${site.email} and it'll reach the same place.`,

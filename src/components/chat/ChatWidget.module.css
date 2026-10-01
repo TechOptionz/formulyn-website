@@ -307,6 +307,12 @@
 
 /* ---- Composer -------------------------------------------------------- */
 
+/* Turnstile, shown during lead capture only if Cloudflare wants a click. */
+.captcha {
+  padding: 0 14px;
+  background: var(--c-ink-deep);
+}
+
 .composer {
   display: flex;
   gap: 8px;

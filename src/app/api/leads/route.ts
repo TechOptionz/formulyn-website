@@ -3,6 +3,7 @@ import { deliverLead } from "@/lib/chat/leads";
 import { isValidEmail, parseMessages } from "@/lib/chat/validate";
 import { MAX_MESSAGE_LENGTH } from "@/lib/chat/types";
 import type { LeadSource } from "@/lib/chat/types";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 const MAX_NAME = 120;
 
@@ -26,8 +27,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, brief, source, company, category } = (body ??
-    {}) as Record<string, unknown>;
+  const { name, email, brief, source, company, category, turnstileToken } =
+    (body ?? {}) as Record<string, unknown>;
+
+  // Checked for every source: a bot could otherwise claim to be any of them.
+  const remoteIp =
+    request.headers.get("cf-connecting-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  if (!(await verifyTurnstile(turnstileToken, remoteIp))) {
+    return NextResponse.json(
+      { error: "Please complete the security check and try again." },
+      { status: 403 },
+    );
+  }
 
   if (typeof name !== "string" || !name.trim()) {
     return NextResponse.json({ error: "Name is required" }, { status: 400 });

@@ -75,6 +75,11 @@
   transition: background 0.25s;
 }
 
+/* Turnstile: invisible unless Cloudflare wants an interaction. */
+.captcha {
+  flex-basis: 100%;
+}
+
 .formStatus {
   flex-basis: 100%;
   font-size: 13px;
